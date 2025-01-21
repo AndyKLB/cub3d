@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_order_elements.c                             :+:      :+:    :+:   */
+/*   check_elements_order.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/21 12:50:40 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:04:58 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,21 @@ int	line_is_spcnews(char *line_map)
 	return (0);
 }
 
-int	check_elements_order(char **map)
+int	check_elements_order(t_cub3d *cub3d)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (cub3d->map[i])
 	{
-		while (check_cardinal_caracters(map[i])
-			|| check_textures_caracters(map[i]) || line_is_fullspace(map[i]))
+		while (check_cardinal_caracters(cub3d->map[i])
+			|| check_textures_caracters(cub3d->map[i]) || line_is_fullspace(cub3d->map[i]))
 			i++;
-		if (map[i])
+		if (cub3d->map[i])
 		{
-			while (map[i])
+			while (cub3d->map[i])
 			{
-				if (!line_is_spcnews(map[i]))
+				if (!line_is_spcnews(cub3d->map[i]))
 					return (1);
 				i++;
 			}

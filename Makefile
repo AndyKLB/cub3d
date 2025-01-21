@@ -16,7 +16,7 @@ MLX_FLAG	= -lX11 -lXext
 
 #######################################################
 ## SOURCES
-SRCS_FILES = parsing.c cub3d.c \
+SRCS_FILES = parsing.c cub3d.c check_elements_order.c\
 
 			
 SRCS_DIR = srcs
