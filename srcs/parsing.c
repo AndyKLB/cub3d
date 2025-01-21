@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/21 12:50:26 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:20:50 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int check_wall(t_cub3d *cub3d, int position)
 		if (cub3d->line[i]) // il existe encore donc pas fini par 1.
 			return (msg_error(cub3d));
 	}
-	if ()
+	i = ft_strlen(cub3d->line) - 1;
+	if (cub3d->line[i] != '1') // 1 de fin
+		return (msg_error(cub3d));
 }
 int msg_error(t_cub3d *cub3d)
 {
@@ -75,3 +77,8 @@ int msg_error(t_cub3d *cub3d)
 // peut commmencer par espace first and final caractere 1 et apres peut avoir des espace pour la ligne 1.
 // ensuite peut commencer par espace mais le premier caractere doit etre 1. donc sois espace soit 1, et apres le 1 ce que tu veux. mais doit avoir 1 pour boucler et apres espace.
 // peut commencer par un espace derniere first et final caractere 1
+
+int checkmap(t_cub3d *cub3d)
+{
+	
+}
