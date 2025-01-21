@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/21 15:52:39 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:37:13 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ typedef struct map
 
 typedef struct s_img
 {
-	char *south_element;
-	char *north_element;
-	char *west_element;
-	char *east_element;
+	char	*south_element;
+	char	*north_element;
+	char	*west_element;
+	char	*east_element;
+	char	*floor;
+	char	*celling;
 	void *mlx_img; // ca je sais pas pk
 	int width;     // epaisseur de limage 32
 	int height;    // taille de limage 32
@@ -65,16 +67,18 @@ typedef struct s_data
 	void	*win;
 	int		win_height;
 	int		win_width;
-	int		player_i;
-	int		player_j;
+	int		player_x;
+	int		player_y;
+	char	player_direction;
 
 	t_map	*map;
 	t_img	*img;
 }			t_data;
 
 int			check_elements_order(t_cub3d *cub3d);
-void		data_init(char *path, t_cub3d *cub3d);
-int			get_texture(t_cub3d *cub3d);
+int			data_init(char *path, t_cub3d *cub3d);
+int			get_texture(t_cub3d *cub3d, t_img *img, t_data *data);
 int			checkmap(t_cub3d *cub3d);
+int			ft_isspace(char c);
 
 #endif
