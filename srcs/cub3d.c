@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:14:57 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/22 16:25:19 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:54:50 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,17 @@ void	init_map_textures(t_cub3d *cub3d)
 
 void	map_reader(t_cub3d *cub3d)
 {
-	int	fd;
+	int fd;
 
 	fd = open(cub3d->path, O_RDONLY);
 	if (fd == -1)
-		return ;
+		return;
 	cub3d->buff = ft_strdup("");
 	while (1)
 	{
 		cub3d->line = get_next_line(fd);
 		if (!cub3d->line)
-			break ;
+			break;
 		cub3d->buff = ft_strjoin(cub3d->buff, cub3d->line);
 		free(cub3d->line);
 	}
@@ -101,7 +101,8 @@ void	map_reader(t_cub3d *cub3d)
 	close(fd);
 }
 
-int	main(int argc, char **argv)
+
+int main(int argc, char **argv)
 {
 	t_cub3d cub3d;
 	t_data data;
@@ -109,11 +110,14 @@ int	main(int argc, char **argv)
 	{
 		if (data_init(argv[1], &cub3d))
 			return (1);
+		checkformat(&cub3d, cub3d.path); // mettre les erreurs dans la fonction car il pourrait y avoir des erreur differente dans une seul fonction
 		map_reader(&cub3d);
-		get_texture(&cub3d, &data);
 		checkmap(&cub3d);
-		if (get_texture(&cub3d, &data))
-			return (1);
+
+		printf("Map valid \n");
+		printf("\xF0\x9F\x92\xA9\n");
+		// if (get_texture(&cub3d))
+		//     return (1);
 	}
 	return (0);
 }
