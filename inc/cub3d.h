@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/22 11:35:45 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/22 12:52:42 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ int get_texture(t_cub3d *cub3d, t_img *img, t_data *data);
 void checkmap(t_cub3d *cub3d);
 int ft_isspace(char c);
 int msg_error(char *error, t_cub3d *cub3d);
+int checkformat(t_cub3d *cub3d, char *path);
+
 
 #endif
