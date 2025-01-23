@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/22 16:56:01 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:15:04 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,6 @@
 # define ERRORDR "it's not the good order"
 # define ERRTEXT "err init textures"
 
-typedef struct s_cub3d
-{
-	char	*line;
-	char	*path;
-	char	*buff;
-	char	**textures_info;
-	char	**map;
-
-}			t_cub3d;
-
 typedef struct map
 {
 	int		count;
@@ -60,8 +50,9 @@ typedef struct s_img
 
 }			t_img;
 
-typedef struct s_data
+typedef struct s_cub3d
 {
+	char	**maps;
 	char	*south_element;
 	char	*north_element;
 	char	*west_element;
@@ -71,26 +62,28 @@ typedef struct s_data
 	char	player_direction;
 	int		player_x;
 	int		player_y;
-	void	*mlx;
-	void	*win;
 	int		win_height;
 	int		win_width;
+	void	*mlx;
+	void	*win;
 
 	t_map	*map;
 	t_img	*img;
-}			t_data;
+}			t_cub3d;
 
 int			check_elements_order(t_cub3d *cub3d);
 int			data_init(char *path, t_cub3d *cub3d);
-int			get_texture(t_cub3d *cub3d, t_data *data);
+int			get_texture(t_cub3d *cub3d, char **tmp_texture);
 void		checkmap(t_cub3d *cub3d);
 int			ft_isspace(char c);
-int			msg_error(char *error, t_cub3d *cub3d);
+int			msg_error(char *error);
 int			check_cardinal_caracters(char *line_map);
 int			check_textures_caracters(char *line_map);
 int			line_is_fullspace(char *line_map);
 void		print_map(char **map);
 void		fill_space_one(char **map);
-int			get_texture(t_cub3d *cub3d, t_data *data);
+int			checkformat(char *path);
+void		free_strs(char **strs);
+void		map_reader(t_cub3d *cub3d, char *path);
 
 #endif
