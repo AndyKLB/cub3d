@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/23 12:54:08 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:59:02 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int countplayer(char **map) // a voir si je fais en map ou non
 	}
 	return (count);
 }
-int checktricky(t_cub3d *cub3d, char **map, int j, int i)
+int checktricky(char **map, int j, int i)
 {
 	if (j == 0) // first
 	{
@@ -65,7 +65,7 @@ int checktricky(t_cub3d *cub3d, char **map, int j, int i)
 			else if (map[j][i] == ' ')
 				j++;
 			else
-				return (msg_error("0 not surrounded by wall", cub3d));
+				return (msg_error("0 not surrounded by wall"));
 		}
 	}
 	else // last
@@ -77,10 +77,10 @@ int checktricky(t_cub3d *cub3d, char **map, int j, int i)
 			else if (map[j][i] == ' ')
 				j--;
 			else
-				return (msg_error("0 not surrounded by wall", cub3d));
+				return (msg_error("0 not surrounded by wall"));
 		}
 	}
-	return (msg_error("not enclosed by wall", cub3d));
+	return (msg_error("not enclosed by wall"));
 }
 
 void check_wall(t_cub3d *cub3d)
@@ -92,45 +92,45 @@ void check_wall(t_cub3d *cub3d)
 	i = 0;
 	flag = 0;
 	j = 0;
-	while (cub3d->map[j])
+	while (cub3d->maps[j])
 	{
-		while (cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '\t') // tant que t egal a espace ou tab nimporte quel line
+		while (cub3d->maps[j][i] == ' ' || cub3d->maps[j][i] == '\t') // tant que t egal a espace ou tab nimporte quel line
 			i++;
-		if (cub3d->map[j][i] != '1') // first 1
-			msg_error("first 1", cub3d);
-		if (j == 0 || !cub3d->map[j + 1]) // first or last
+		if (cub3d->maps[j][i] != '1') // first 1
+			msg_error("first 1");
+		if (j == 0 || !cub3d->maps[j + 1]) // first or last
 		{
-			while (cub3d->map[j][i])
+			while (cub3d->maps[j][i])
 			{
-				if (cub3d->map[j][i] == ' ')
-					checktricky(cub3d, cub3d->map, j, i);
-				else if (cub3d->map[j][i] != ' ' && cub3d->map[j][i] != '1')
-					msg_error("in first or last only 1 or space", cub3d);
+				if (cub3d->maps[j][i] == ' ')
+					checktricky(cub3d->maps, j, i);
+				else if (cub3d->maps[j][i] != ' ' && cub3d->maps[j][i] != '1')
+					msg_error("in first or last only 1 or space");
 				i++;
 			}
 		}
 		else
 		{
-			while (cub3d->map[j][i])
+			while (cub3d->maps[j][i])
 			{
 				if ((cub3d->map[j][i] == '0' && i > (int)ft_strlen(cub3d->map[j - 1]) - 1) || (cub3d->map[j][i] == '0' && i > (int)ft_strlen(cub3d->map[j + 1]) - 1))
 					msg_error("0 not surrounded by wall", cub3d);
 				else if (cub3d->map[j][i] == 0)
 					flag = 1;
-				else if (cub3d->map[j][i] == 1 && flag)
+				else if (cub3d->maps[j][i] == 1 && flag)
 					flag = 0;
 				i++;
 			}
 		}
-		i = ft_strlen(cub3d->map[j]) - 1;
-		if (cub3d->map[j][i] != '1') // 1 de fin
-			msg_error("last 1", cub3d);
+		i = ft_strlen(cub3d->maps[j]) - 1;
+		if (cub3d->maps[j][i] != '1') // 1 de fin
+			msg_error("last 1");
 		j++;
 		i = 0;
 	}
 }
 
-int checkformat(t_cub3d *cub3d, char *path)
+int checkformat(char *path)
 {
 	int len;
 	int fd;
@@ -140,34 +140,34 @@ int checkformat(t_cub3d *cub3d, char *path)
 	{
 		fd = open(path, __O_DIRECTORY);
 		close(fd);
-		msg_error(ERRDIR, cub3d);
+		msg_error(ERRDIR);
 	}
 	else
 	{
 		if (ft_strncmp(path + len - 4, ".cub", 4) != 0)
-			msg_error(ERREXT, cub3d);
+			msg_error(ERREXT);
 		fd = open(path, O_RDONLY);
 		if (read(fd, 0, 0) < 0)
-			msg_error(ERRFD, cub3d);
+			msg_error(ERRFD);
 		close(fd);
 	}
 	return (Success);
 }
 
-int msg_error(char *error, t_cub3d *cub3d)
+int msg_error(char *error)
 {
 	printf("%s", error);
-	if (cub3d->line)
-		free(cub3d->line);
+	// if (cub3d->line)
+	// 	free(cub3d->line);
 	exit(1);
 }
 
 void checkmap(t_cub3d *cub3d)
 {
-	if (find(cub3d->map)) // autre caractere
-		msg_error("find", cub3d);
-	if (countplayer(cub3d->map) > 1) // plus dun player
-		msg_error("countplayer", cub3d);
+	if (find(cub3d->maps)) // autre caractere
+		msg_error("find");
+	if (countplayer(cub3d->maps) > 1) // plus dun player
+		msg_error("countplayer");
 	check_wall(cub3d); // entourer de mur
 }
 // si ya un espace tu cherches jusqua trouver quelque chose si cest autre chose qu'un 1 cest error
