@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/23 13:13:09 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:20:26 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void checkmap(t_cub3d *cub3d)
 	if (countplayer(cub3d->maps) > 1) // plus dun player
 		msg_error("countplayer", cub3d);
 	check_wall(cub3d); // entourer de mur
+	fill_space_one(cub3d->maps);
 }
 // si ya un espace tu cherches jusqua trouver quelque chose si cest autre chose qu'un 1 cest error
 // check les 1, si ya pas full 1 apres le premier 1 trouver cest 0.

@@ -6,12 +6,12 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/23 13:12:55 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:30:45 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
 # include "../lib/libft/libft.h"
 # include "../lib/mlx/mlx.h"
@@ -32,24 +32,28 @@
 
 typedef struct s_map
 {
-	int count;
-	char *line;
-	int countline;
-	int index;
+	char	*line;
+	int		count;
+	int		countline;
+	int		index;
 
-} t_map;
+}			t_map;
 
 typedef struct s_img
 {
-	void *mlx_img; // ca je sais pas pk
-	int width;	   // epaisseur de limage 32
-	int height;	   // taille de limage 32
-	void *wall;
-	void *ground;
-	void *player;
+	void *mlx_img;   // ca je sais pas pk
+	int width;       // epaisseur de limage 32
+	int height;      // taille de limage 32
 	int line_length; // en gros la largeur de limage
+	void	*wall_no;
+	void	*wall_ea;
+	void	*wall_we;
+	void	*wall_so;
+	void	*floor;
+	void	*celling;
+	void	*player;
 
-} t_img;
+}			t_img;
 
 typedef struct s_cub3d
 {
@@ -73,7 +77,7 @@ typedef struct s_cub3d
 }			t_cub3d;
 
 int			check_elements_order(t_cub3d *cub3d);
-int			data_init(char *path, t_cub3d *cub3d);
+int			data_init(t_cub3d *cub3d, t_img *img, t_map *map);
 int			get_texture(t_cub3d *cub3d, char **tmp_texture);
 void		checkmap(t_cub3d *cub3d);
 int			ft_isspace(char c);
@@ -86,5 +90,7 @@ void		fill_space_one(char **map);
 int			checkformat(t_cub3d *cub3d, char *path);
 void		free_strs(char **strs);
 void		map_reader(t_cub3d *cub3d, char *path);
+int			is_news(char c);
+int			is_character(char c);
 
 #endif

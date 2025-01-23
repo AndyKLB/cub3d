@@ -6,21 +6,12 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/23 11:47:54 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:30:17 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	is_news(char c)
-{
-	return (c == 'N' || c == 'E' || c == 'W' || c == 'S' || c == '0'
-		|| c == '1');
-}
-int	ft_isspace(char c)
-{
-	return (c == ' ' || c == '\t');
-}
 
 int	check_cardinal_caracters(char *line_map)
 {
@@ -64,24 +55,7 @@ int	line_is_fullspace(char *line_map)
 	return (0);
 }
 
-void	fill_space_one(char **map)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (ft_isspace(map[i][j]) || is_news(map[i][j]))
-		{
-			if (ft_isspace(map[i][j]))
-				map[i][j] = '1';
-			j++;
-		}
-		i++;
-	}
-}
 
 int	line_is_spcnews(char *line_map)
 {
