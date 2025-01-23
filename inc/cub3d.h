@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/23 12:15:04 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:39:22 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -80,7 +81,7 @@ int			msg_error(char *error);
 int			check_cardinal_caracters(char *line_map);
 int			check_textures_caracters(char *line_map);
 int			line_is_fullspace(char *line_map);
-void		print_map(char **map);
+void		print_map(t_cub3d *cub3d, bool restr_aff);
 void		fill_space_one(char **map);
 int			checkformat(char *path);
 void		free_strs(char **strs);
