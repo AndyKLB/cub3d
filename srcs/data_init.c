@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:33:42 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/23 12:15:33 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:14:16 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	get_texture(t_cub3d *cub3d, char **tmp_texture)
 			break ;
 	}
 	if (check_texture_init(cub3d))
-		return (msg_error(ERRTEXT), 1);
+		return (msg_error(ERRTEXT, cub3d), 1);
 	return (0);
 }
 

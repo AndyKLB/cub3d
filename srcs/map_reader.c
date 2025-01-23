@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/23 12:12:32 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:14:30 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_map_textures(t_cub3d *cub3d, char *buff, char ***tmp_texture)
 	j = 0;
 	splits_elements(cub3d, buff, tmp_texture);
 	if (check_elements_order(cub3d))
-		msg_error(ERRORDR); // free les splits
+		msg_error(ERRORDR, cub3d); // free les splits
 	separate_map_texture(&j, &i, cub3d->maps);
 	set_map(i, &cub3d->maps);
 	set_textures_info(j, i, tmp_texture);
