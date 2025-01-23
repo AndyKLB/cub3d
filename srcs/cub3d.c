@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:14:57 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/22 16:54:50 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:53:19 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	map_reader(t_cub3d *cub3d)
 int main(int argc, char **argv)
 {
 	t_cub3d cub3d;
-	t_data data;
+	//t_data data;
 	if (argc == 2)
 	{
 		if (data_init(argv[1], &cub3d))

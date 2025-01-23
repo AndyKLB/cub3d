@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/22 16:28:15 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/23 11:21:04 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,8 @@ void check_wall(t_cub3d *cub3d)
 		{
 			while (cub3d->map[j][i])
 			{
-				printf("i = %d et j = %d\n", i, j);
-				printf(" len j + 1 = %lu et len j - 1 = %lu\n", ft_strlen(cub3d->map[j - 1]) - 1, ft_strlen(cub3d->map[j + 1]) - 1);
-				if ((cub3d->map[j][i] == ' ' && i > (int)ft_strlen(cub3d->map[j - 1]) - 1) || (cub3d->map[j][i] == ' ' && i > (int)ft_strlen(cub3d->map[j + 1]) - 1))
-				{
-					printf("i = %d et j = %d\n", i, j);
-					printf(" len j + 1 = %lu et len j - 1 = %lu\n", ft_strlen(cub3d->map[j - 1]) - 1, ft_strlen(cub3d->map[j + 1]) - 1);
-				}
+				if ((cub3d->map[j][i] == '0' && i > (int)ft_strlen(cub3d->map[j - 1]) - 1) || (cub3d->map[j][i] == '0' && i > (int)ft_strlen(cub3d->map[j + 1]) - 1))
+					msg_error("0 not surrounded by wall", cub3d);
 				else if (cub3d->map[j][i] == 0)
 					flag = 1;
 				else if (cub3d->map[j][i] == 1 && flag)
@@ -198,8 +193,6 @@ void checkmap(t_cub3d *cub3d)
 // if == 0
 // if i > a la colone du haut c cuit
 // if i > a la colone du bas c cuit
-
-
 
 // tester le code juste au dessus dans les commentaire le if i >
 // remodeler le code avec andy, et lui dire pour les news de karandeep au cas ou il a pas vu.
