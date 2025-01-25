@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:38:27 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/21 10:26:31 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:20:30 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <unistd.h>
-#define BUFFER_SIZE 42
+# define BUFFER_SIZE 42
 
 // LIBC
 int					ft_isalpha(int c);
@@ -88,4 +88,5 @@ int					ft_print_unsigned(unsigned int nbr, int fd);
 char				*get_next_line(int fd);
 //##OTHER##
 long				ft_atol(char *str);
+int					ft_strictcmp(const char *s1, const char *s2);
 #endif

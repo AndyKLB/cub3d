@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/25 16:52:38 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:28:56 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include "../lib/mlx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <dirent.h>
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/types.h>
 # include <unistd.h>
 
 # define ERRDIR "it's a directory"

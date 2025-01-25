@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 14:02:48 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:19:27 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void checkmap(t_cub3d *cub3d)
 {
 	if (find(cub3d->maps)) // autre caractere
 		msg_error("find", cub3d);
-	if (countplayer(cub3d->maps) > 1) // plus dun player
+	if (countplayer(cub3d->maps) != 1) // plus dun player
 		msg_error("countplayer", cub3d);
 	check_wall(cub3d); // entourer de mur
 	fill_space_one(cub3d->maps);

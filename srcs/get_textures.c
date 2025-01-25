@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 17:07:10 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:41:21 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ void	copy_element(char *textures, char **element)
 	int	i;
 
 	i = 0;
+	if (*element)
+	{
+		free(*element);
+		*element = NULL;
+		return ;
+	}
 	while (ft_isspace(textures[i]))
 		i++;
 	*element = ft_strdup((textures + i));
@@ -102,14 +108,15 @@ int	check_nbr_value(char *floor_or_celling)
 {
 	int	i;
 	int	nb_spc;
-	int is_not_digit;
+	int	is_not_digit;
 
 	is_not_digit = 0;
 	nb_spc = 0;
 	i = 0;
 	while (floor_or_celling[i] || ft_isspace(floor_or_celling[i]))
 	{
-		if (!ft_isdigit(floor_or_celling[i]) && !ft_isspace(floor_or_celling[i]))
+		if (!ft_isdigit(floor_or_celling[i])
+			&& !ft_isspace(floor_or_celling[i]))
 			is_not_digit++;
 		if (floor_or_celling[i] == ' ')
 			nb_spc++;
@@ -120,15 +127,40 @@ int	check_nbr_value(char *floor_or_celling)
 	return (0);
 }
 
+int	check_dir_textures(char *dir_path, char *cardinal_point)
+{
+	DIR	*dir;
+	int	i;
+
+	i = 0;
+	if (!dir_path)
+		return (1);
+	dir = opendir(dir_path);
+	if (!dir)
+		return (1);
+	closedir(dir);
+	while (dir_path[i])
+		i++;
+	while (dir_path[i] != '/' && i > 0)
+		i--;
+	if (ft_strictcmp((dir_path + i + 1), cardinal_point))
+		return (printf("%s\n%s\n", (dir_path + i + 1), cardinal_point), 1);
+	return (0);
+}
+
 int	check_texture_init(t_cub3d *cub3d)
 {
-	if (!cub3d->south_element)
+	if (!cub3d->south_element || check_dir_textures(cub3d->south_element,
+			"south.xpm"))
 		return (1);
-	if (!cub3d->north_element)
+	if (!cub3d->north_element || check_dir_textures(cub3d->north_element,
+			"north.xpm"))
 		return (1);
-	if (!cub3d->west_element)
+	if (!cub3d->west_element || check_dir_textures(cub3d->west_element,
+			"west.xpm"))
 		return (1);
-	if (!cub3d->east_element)
+	if (!cub3d->east_element || check_dir_textures(cub3d->east_element,
+			"east.xpm"))
 		return (1);
 	if (!cub3d->floor || check_nbr_value(cub3d->floor))
 		return (1);
