@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 21:33:07 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 22:03:05 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,18 +127,21 @@ int	check_nbr_value(char *floor_or_celling)
 	return (0);
 }
 
+
+// 1 pourquoi forbidden.cub bad ? a revoir 
 int	check_dir_textures(char *dir_path, char *cardinal_point)
 {
 	DIR		*dir;
 	int		i;
 	char	*dir_strim;
 
+	(void)cardinal_point; //1
 	if (!dir_path)
 		return (1);
 	i = 0;
 	while (dir_path[i])
 		i++;
-	while (dir_path[i] != '/' && i > 0)
+	while (dir_path[i] != '/' && i > 0) // 1
 		i--;
 	dir_strim = ft_rsubstr(dir_path, i, (ft_strlen(dir_path)));
 	if (!dir_strim)
@@ -148,12 +151,12 @@ int	check_dir_textures(char *dir_path, char *cardinal_point)
 		return (free(dir_strim), 1);
 	closedir(dir);
 	free(dir_strim);
-	if (ft_strictcmp((dir_path + i + 1), cardinal_point))
-		return (printf("%s\n%s\n", (dir_path + i + 1), cardinal_point), 1);
+	// if (ft_strictcmp((dir_path + i + 1), cardinal_point))
+	// 	return (printf("%s\n%s\n", (dir_path + i + 1), cardinal_point), 1);
 	return (0);
 }
 
-int	check_texture_init(t_cub3d *cub3d)
+int	check_texture_init(t_cub3d *cub3d) // 1
 {
 	if (!cub3d->south_element || check_dir_textures(cub3d->south_element,
 			"south.xpm"))
