@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/23 15:30:45 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:52:38 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define ERRFD "it's empty"
 # define ERREXT "it's not the good format"
 # define ERRORDR "it's not the good order"
+# define ERRNOMAP "no map present"
 # define ERRTEXT "err init textures"
 
 typedef struct s_map

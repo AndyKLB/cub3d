@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/23 16:27:32 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:07:10 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,28 @@ int	get_wall_texture(char *wall_texture, t_cub3d *cub3d)
 	return (0);
 }
 
+int	check_nbr_value(char *floor_or_celling)
+{
+	int	i;
+	int	nb_spc;
+	int is_not_digit;
+
+	is_not_digit = 0;
+	nb_spc = 0;
+	i = 0;
+	while (floor_or_celling[i] || ft_isspace(floor_or_celling[i]))
+	{
+		if (!ft_isdigit(floor_or_celling[i]) && !ft_isspace(floor_or_celling[i]))
+			is_not_digit++;
+		if (floor_or_celling[i] == ' ')
+			nb_spc++;
+		i++;
+	}
+	if (nb_spc != 2 || is_not_digit)
+		return (1);
+	return (0);
+}
+
 int	check_texture_init(t_cub3d *cub3d)
 {
 	if (!cub3d->south_element)
@@ -108,20 +130,22 @@ int	check_texture_init(t_cub3d *cub3d)
 		return (1);
 	if (!cub3d->east_element)
 		return (1);
-	if (!cub3d->floor)
+	if (!cub3d->floor || check_nbr_value(cub3d->floor))
 		return (1);
-	if (!cub3d->celling)
+	if (!cub3d->celling || check_nbr_value(cub3d->celling))
 		return (1);
 	return (0);
 }
 
-char *remove_comma(char *element)
+char	*remove_comma(char *element)
 {
 	int		i;
 	int		j;
 	size_t	size_element;
-	char *new;
+	char	*new;
 
+	if (!element)
+		return (NULL);
 	size_element = ft_strlen(element);
 	i = 0;
 	j = 0;
@@ -146,12 +170,12 @@ char *remove_comma(char *element)
 	}
 	new[i] = '\0';
 	free(element);
-	return(new);	
+	return (new);
 }
 
 int	get_texture(t_cub3d *cub3d, char **tmp_texture)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	get_chararacter_pos(cub3d->maps, cub3d);

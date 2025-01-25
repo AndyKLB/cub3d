@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/23 13:20:26 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:02:48 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int find(char **map) // il verifie ligne par ligne.
 
 	i = 0;
 	j = 0;
+	if(!map)
+	return (1);
 	while (map[j])
 	{
 		while (map[j][i])
@@ -40,6 +42,8 @@ int countplayer(char **map) // a voir si je fais en map ou non
 	i = 0;
 	j = 0;
 	count = 0;
+	if (!map)
+		return(1);
 	while (map[j])
 	{
 		while (map[j][i])
@@ -55,6 +59,8 @@ int countplayer(char **map) // a voir si je fais en map ou non
 }
 int checktricky(t_cub3d *cub3d, char **map, int j, int i)
 {
+	if (!map)
+		return(1);
 	if (j == 0) // first
 	{
 		j++;
@@ -92,6 +98,8 @@ void check_wall(t_cub3d *cub3d)
 	i = 0;
 	flag = 0;
 	j = 0;
+	if (!cub3d->maps)
+		return;
 	while (cub3d->maps[j])
 	{
 		while (cub3d->maps[j][i] == ' ' || cub3d->maps[j][i] == '\t') // tant que t egal a espace ou tab nimporte quel line

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/23 16:26:31 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:54:18 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,22 @@ void	init_map_textures(t_cub3d *cub3d, char *buff, char ***tmp_texture)
 	i = 0;
 	j = 0;
 	splits_elements(cub3d, buff, tmp_texture);
-	if (check_elements_order(cub3d))
+	if (check_elements_order(cub3d) == 1)
 		msg_error(ERRORDR, cub3d); // free les splits
+	else if (check_elements_order(cub3d) == 2)
+		msg_error(ERRNOMAP, cub3d); // free les splits
 	separate_map_texture(&j, &i, cub3d->maps);
 	set_map(i, &cub3d->maps);
 	set_textures_info(j, i, tmp_texture);
-    get_texture(cub3d, *tmp_texture);
+	get_texture(cub3d, *tmp_texture);
 }
 
 void	map_reader(t_cub3d *cub3d, char *path)
 {
-	int fd;
-	char *buff;
-	char *line;
-    char **tmp_texture_info;
+	int		fd;
+	char	*buff;
+	char	*line;
+	char	**tmp_texture_info;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -93,9 +95,14 @@ void	map_reader(t_cub3d *cub3d, char *path)
 		buff = ft_strjoin(buff, line);
 		free(line);
 	}
+	if (!*buff)
+	{
+		free(buff);
+		return ;
+	}
 	init_map_textures(cub3d, buff, &tmp_texture_info);
-    free_strs(tmp_texture_info);
-    tmp_texture_info = NULL;
+	free_strs(tmp_texture_info);
+	tmp_texture_info = NULL;
 	free(buff);
 	close(fd);
 }
