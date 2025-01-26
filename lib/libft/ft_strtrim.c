@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:19:33 by ankammer          #+#    #+#             */
-/*   Updated: 2023/11/15 18:33:22 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/26 01:01:33 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,20 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = find_start(s1, set);
 	end = find_end(s1, set, start);
 	new = fill_str(start, end);
+	return (new);
+}
+
+char	*ft_strtrim_free(char const *s1, char const *set)
+{
+	char	*start;
+	char	*end;
+	char	*new;
+
+	if (!s1 || !set)
+		return (NULL);
+	start = find_start(s1, set);
+	end = find_end(s1, set, start);
+	new = fill_str(start, end);
+	free((char *)s1);
 	return (new);
 }

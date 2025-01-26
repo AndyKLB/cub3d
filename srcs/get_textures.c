@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 22:03:05 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/26 01:00:21 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,23 +126,26 @@ int	check_nbr_value(char *floor_or_celling)
 		return (1);
 	return (0);
 }
+void	go_to_end(int *i, char *dir_path, char c)
+{
+	while (dir_path[*i])
+		(*i)++;
+	while (dir_path[*i] != c && *i > 0)
+		(*i)--;
+}
 
-
-// 1 pourquoi forbidden.cub bad ? a revoir 
-int	check_dir_textures(char *dir_path, char *cardinal_point)
+// 1 pourquoi forbidden.cub bad ? a revoir
+int	check_dir_textures(char *dir_path)
 {
 	DIR		*dir;
 	int		i;
 	char	*dir_strim;
 
-	(void)cardinal_point; //1
 	if (!dir_path)
 		return (1);
 	i = 0;
-	while (dir_path[i])
-		i++;
-	while (dir_path[i] != '/' && i > 0) // 1
-		i--;
+	dir_path = ft_strtrim_free(dir_path, " ");
+	go_to_end(&i, dir_path, '/');
 	dir_strim = ft_rsubstr(dir_path, i, (ft_strlen(dir_path)));
 	if (!dir_strim)
 		return (1);
@@ -151,24 +154,22 @@ int	check_dir_textures(char *dir_path, char *cardinal_point)
 		return (free(dir_strim), 1);
 	closedir(dir);
 	free(dir_strim);
-	// if (ft_strictcmp((dir_path + i + 1), cardinal_point))
-	// 	return (printf("%s\n%s\n", (dir_path + i + 1), cardinal_point), 1);
+	i = 0;
+	go_to_end(&i, dir_path, '.');
+	if (ft_strictcmp((dir_path + i), ".xpm"))
+		return (printf("%s\n", (dir_path + i)), 1);
 	return (0);
 }
 
 int	check_texture_init(t_cub3d *cub3d) // 1
 {
-	if (!cub3d->south_element || check_dir_textures(cub3d->south_element,
-			"south.xpm"))
+	if (!cub3d->south_element || check_dir_textures(cub3d->south_element))
 		return (1);
-	if (!cub3d->north_element || check_dir_textures(cub3d->north_element,
-			"north.xpm"))
+	if (!cub3d->north_element || check_dir_textures(cub3d->north_element))
 		return (1);
-	if (!cub3d->west_element || check_dir_textures(cub3d->west_element,
-			"west.xpm"))
+	if (!cub3d->west_element || check_dir_textures(cub3d->west_element))
 		return (1);
-	if (!cub3d->east_element || check_dir_textures(cub3d->east_element,
-			"east.xpm"))
+	if (!cub3d->east_element || check_dir_textures(cub3d->east_element))
 		return (1);
 	if (!cub3d->floor || check_nbr_value(cub3d->floor))
 		return (1);

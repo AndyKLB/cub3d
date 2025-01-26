@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:38:27 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 22:04:16 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/26 01:00:41 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,5 @@ char				*get_next_line(int fd);
 long				ft_atol(char *str);
 int					ft_strictcmp(const char *s1, const char *s2);
 char				*ft_rsubstr(char const *s, unsigned int end, size_t len);
+char				*ft_strtrim_free(char const *s1, char const *set);
 #endif
