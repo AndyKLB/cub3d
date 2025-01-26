@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:14:57 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 13:55:23 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/26 01:08:42 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@ void	print_map(t_cub3d *cub3d, bool restr_aff)
 		printf("east = %s\nnorth = %s\nsouth = %s\nwest = %s\n",
 			cub3d->east_element, cub3d->north_element, cub3d->south_element,
 			cub3d->west_element);
-		printf("direction = %c\nplayer  x = %d\nplayer y = %d\n",
+		printf("direction = %c\nplayer  x = %d\nplayer y = %d\n\n\n",
 			cub3d->player_direction, cub3d->player_x, cub3d->player_y);
 	}
 	if (cub3d->maps)
 	{
+		if (restr_aff)
+			ft_printf_fd(1, "##BEFORE FILLONE##\n\n");
+		else
+			ft_printf_fd(1, "##AFTER FILLONE##\n\n");
 		while (cub3d->maps[i])
 		{
 			ft_printf_fd(1, cub3d->maps[i]);

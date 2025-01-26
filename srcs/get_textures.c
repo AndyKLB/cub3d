@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/26 01:00:21 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/26 01:40:34 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	get_chararacter_pos(char **map, t_cub3d *cub3d) // ajouter un break
 
 // a revoir pour la gestion du strdup!!
 // init strdup incorrect a revoir!!
+// probleme avec square map espace EA semble poser probleme " textures/....."
 
 void	copy_element(char *textures, char **element)
 {
@@ -135,18 +136,18 @@ void	go_to_end(int *i, char *dir_path, char c)
 }
 
 // 1 pourquoi forbidden.cub bad ? a revoir
-int	check_dir_textures(char *dir_path)
+int	check_dir_textures(char **dir_path)
 {
 	DIR		*dir;
 	int		i;
 	char	*dir_strim;
 
-	if (!dir_path)
+	if (!*dir_path)
 		return (1);
 	i = 0;
-	dir_path = ft_strtrim_free(dir_path, " ");
-	go_to_end(&i, dir_path, '/');
-	dir_strim = ft_rsubstr(dir_path, i, (ft_strlen(dir_path)));
+	*dir_path = ft_strtrim_free(*dir_path, " ");
+	go_to_end(&i, *dir_path, '/');
+	dir_strim = ft_rsubstr(*dir_path, i, (ft_strlen(*dir_path)));
 	if (!dir_strim)
 		return (1);
 	dir = opendir(dir_strim);
@@ -155,21 +156,21 @@ int	check_dir_textures(char *dir_path)
 	closedir(dir);
 	free(dir_strim);
 	i = 0;
-	go_to_end(&i, dir_path, '.');
-	if (ft_strictcmp((dir_path + i), ".xpm"))
-		return (printf("%s\n", (dir_path + i)), 1);
+	go_to_end(&i, *dir_path, '.');
+	if (ft_strictcmp((*dir_path + i), ".xpm"))
+		return (printf("%s\n", (*dir_path + i)), 1);
 	return (0);
 }
 
 int	check_texture_init(t_cub3d *cub3d) // 1
 {
-	if (!cub3d->south_element || check_dir_textures(cub3d->south_element))
+	if (!cub3d->south_element || check_dir_textures(&cub3d->south_element))
 		return (1);
-	if (!cub3d->north_element || check_dir_textures(cub3d->north_element))
+	if (!cub3d->north_element || check_dir_textures(&cub3d->north_element))
 		return (1);
-	if (!cub3d->west_element || check_dir_textures(cub3d->west_element))
+	if (!cub3d->west_element || check_dir_textures(&cub3d->west_element))
 		return (1);
-	if (!cub3d->east_element || check_dir_textures(cub3d->east_element))
+	if (!cub3d->east_element || check_dir_textures(&cub3d->east_element))
 		return (1);
 	if (!cub3d->floor || check_nbr_value(cub3d->floor))
 		return (1);
