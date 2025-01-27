@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/27 13:31:35 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:10:38 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,8 @@ int	msg_error(char *msg, t_cub3d *cub3d)
 {
 	if (cub3d->celling)
 		free(cub3d->celling);
+	if (cub3d->floor)
+		free(cub3d->floor);
 	if (cub3d->east_element)
 		free(cub3d->east_element);
 	if (cub3d->west_element)
@@ -213,19 +215,19 @@ void	checkmap(t_cub3d *cub3d)
 // wall
 // peut commmencer par espace first and final caractere 1 et apres peut avoir des espace pour la ligne 1.
 // ensuite peut commencer par espace mais le premier caractere doit etre 1. donc sois espace soit 1, et apres le 1 ce que tu veux.mais doit avoir 1 pour boucler et apres espace.
-// peut commencer par un espace derniere first et final caractere 1
+	// peut commencer par un espace derniere first et final caractere 1
 
-// relire ma fonction.
-// et relire le parsing de so_long et reflechir a tout type de parsing demandez aux autres.
+	// relire ma fonction.
+	// et relire le parsing de so_long et reflechir a tout type de parsing demandez aux autres.
 
-// autre que la premeire et la derniere
-// si ya un espace il doit y avoir forcement 1 avant et apres lespace.
+	// autre que la premeire et la derniere
+	// si ya un espace il doit y avoir forcement 1 avant et apres lespace.
 
-// cas du 0 et 0 quand ya un espace qui arrive en colone
-// bien limager.
+	// cas du 0 et 0 quand ya un espace qui arrive en colone
+	// bien limager.
 
-// if == 0
-// if i > a la colone du haut c cuit
-// if i > a la colone du bas c cuit
+	// if == 0
+	// if i > a la colone du haut c cuit
+	// if i > a la colone du bas c cuit
 
-// tester le code juste au dessus dans les commentaire le if i >
+	// tester le code juste au dessus dans les commentaire le if i >

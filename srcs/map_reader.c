@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 16:54:18 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:25:41 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	map_reader(t_cub3d *cub3d, char *path)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		buff = ft_strjoin(buff, line);
+		buff = ft_strjoinfree(buff, line);
 		free(line);
 	}
 	if (!*buff)

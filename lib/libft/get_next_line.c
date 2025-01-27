@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:24:50 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/21 10:25:17 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:25:19 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_read_fd(int fd, char *stash, ssize_t read_bytes)
 			stash = ft_strdup("");
 		if (!stash)
 			return (NULL);
-		stash = ft_strjoin(stash, buff);
+		stash = ft_strjoinfree(stash, buff);
 		if (!stash)
 			return (NULL);
 		if (ft_strchr(stash, '\n'))
