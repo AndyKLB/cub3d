@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:33:42 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/23 14:06:33 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:36:30 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ int	data_init(t_cub3d *cub3d, t_img *img, t_map *map)
 	init_cub3d_struct(&cub3d, &map, &img);
 	init_map_struct(&cub3d->map);
 	init_img_struct(&cub3d->img);
+	cub3d->map = map;
+	cub3d->img = img;
 	return (0);
 }

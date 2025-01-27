@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/27 11:24:13 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:56:47 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int			msg_error(char *error, t_cub3d *cub3d);
 int			check_cardinal_caracters(char *line_map);
 int			check_textures_caracters(char *line_map);
 int			line_is_fullspace(char *line_map);
-void		print_map(t_cub3d *cub3d, bool restr_aff);
+void		print_data(t_cub3d *cub3d, bool restr_aff);
 void		fill_space_one(char **map);
 int			checkformat(t_cub3d *cub3d, char *path);
 void		free_strs(char **strs);
