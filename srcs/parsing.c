@@ -6,26 +6,28 @@
 /*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 17:19:27 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:34:17 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int find(char **map) // il verifie ligne par ligne.
+int	find(char **map) // il verifie ligne par ligne.
 {
 	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	if(!map)
-	return (1);
+	if (!map)
+		return (1);
 	while (map[j])
 	{
 		while (map[j][i])
 		{
-			if (map[j][i] != 'N' && map[j][i] != 'S' && map[j][i] != 'W' && map[j][i] != '0' && map[j][i] != 'E' && map[j][i] != '1' && map[j][i] != ' ')
+			if (map[j][i] != 'N' && map[j][i] != 'S' && map[j][i] != 'W'
+				&& map[j][i] != '0' && map[j][i] != 'E' && map[j][i] != '1'
+				&& map[j][i] != ' ')
 				return (1);
 			i++;
 		}
@@ -34,7 +36,7 @@ int find(char **map) // il verifie ligne par ligne.
 	}
 	return (0);
 }
-int countplayer(char **map) // a voir si je fais en map ou non
+int	countplayer(char **map) // a voir si je fais en map ou non
 {
 	int i;
 	int j;
@@ -43,12 +45,13 @@ int countplayer(char **map) // a voir si je fais en map ou non
 	j = 0;
 	count = 0;
 	if (!map)
-		return(1);
+		return (1);
 	while (map[j])
 	{
 		while (map[j][i])
 		{
-			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E' || map[j][i] == 'W')
+			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E'
+				|| map[j][i] == 'W')
 				count++;
 			i++;
 		}
@@ -57,10 +60,10 @@ int countplayer(char **map) // a voir si je fais en map ou non
 	}
 	return (count);
 }
-int checktricky(t_cub3d *cub3d, char **map, int j, int i)
+int	checktricky(t_cub3d *cub3d, char **map, int j, int i)
 {
 	if (!map)
-		return(1);
+		return (1);
 	if (j == 0) // first
 	{
 		j++;
@@ -89,20 +92,21 @@ int checktricky(t_cub3d *cub3d, char **map, int j, int i)
 	return (msg_error("not enclosed by wall", cub3d));
 }
 
-void check_wall(t_cub3d *cub3d)
+void	check_wall(t_cub3d *cub3d)
 {
-	int i;
-	int j;
-	int flag;
+	int	i;
+	int	j;
+	int	flag;
 
 	i = 0;
 	flag = 0;
 	j = 0;
 	if (!cub3d->maps)
-		return;
+		return ;
 	while (cub3d->maps[j])
 	{
-		while (cub3d->maps[j][i] == ' ' || cub3d->maps[j][i] == '\t') // tant que t egal a espace ou tab nimporte quel line
+		while (cub3d->maps[j][i] == ' ' || cub3d->maps[j][i] == '\t')
+			// tant que t egal a espace ou tab nimporte quel line
 			i++;
 		if (cub3d->maps[j][i] != '1') // first 1
 			msg_error("first 1", cub3d);
@@ -121,7 +125,10 @@ void check_wall(t_cub3d *cub3d)
 		{
 			while (cub3d->maps[j][i])
 			{
-				if ((cub3d->maps[j][i] == '0' && i > (int)ft_strlen(cub3d->maps[j - 1]) - 1) || (cub3d->maps[j][i] == '0' && i > (int)ft_strlen(cub3d->maps[j + 1]) - 1))
+				if ((cub3d->maps[j][i] == '0'
+						&& i > (int)ft_strlen(cub3d->maps[j - 1]) - 1)
+					|| (cub3d->maps[j][i] == '0'
+						&& i > (int)ft_strlen(cub3d->maps[j + 1]) - 1))
 					msg_error("0 not surrounded by wall", cub3d);
 				else if (cub3d->maps[j][i] == 0)
 					flag = 1;
@@ -138,10 +145,10 @@ void check_wall(t_cub3d *cub3d)
 	}
 }
 
-int checkformat(t_cub3d *cub3d, char *path)
+int	checkformat(t_cub3d *cub3d, char *path)
 {
-	int len;
-	int fd;
+	int	len;
+	int	fd;
 
 	len = ft_strlen(path);
 	if (open(path, __O_DIRECTORY) >= 0)
@@ -155,21 +162,29 @@ int checkformat(t_cub3d *cub3d, char *path)
 		if (ft_strncmp(path + len - 4, ".cub", 4) != 0)
 			msg_error(ERREXT, cub3d);
 		fd = open(path, O_RDONLY);
+		if (fd < 0)
+		{
+			perror(strerror(fd));
+			exit(1);
+		}
 		if (read(fd, 0, 0) < 0)
-			msg_error(ERRFD, cub3d);
+		{
+			perror(strerror(fd));
+			exit(1);
+		}
 		close(fd);
 	}
 	return (Success);
 }
 
-int msg_error(char *error, t_cub3d *cub3d)
+int	msg_error(char *msg, t_cub3d *cub3d)
 {
 	(void)cub3d;
-	printf("%s", error);
+	ft_printf_fd(2, msg);
 	exit(1);
 }
 
-void checkmap(t_cub3d *cub3d)
+void	checkmap(t_cub3d *cub3d)
 {
 	if (find(cub3d->maps)) // autre caractere
 		msg_error("find", cub3d);
@@ -186,20 +201,20 @@ void checkmap(t_cub3d *cub3d)
 
 // wall
 // peut commmencer par espace first and final caractere 1 et apres peut avoir des espace pour la ligne 1.
-// ensuite peut commencer par espace mais le premier caractere doit etre 1. donc sois espace soit 1, et apres le 1 ce que tu veux. mais doit avoir 1 pour boucler et apres espace.
-// peut commencer par un espace derniere first et final caractere 1
+// ensuite peut commencer par espace mais le premier caractere doit etre 1. donc sois espace soit 1, et apres le 1 ce que tu veux.mais doit avoir 1 pour boucler et apres espace.
+	// peut commencer par un espace derniere first et final caractere 1
 
-// relire ma fonction.
-// et relire le parsing de so_long et reflechir a tout type de parsing demandez aux autres.
+	// relire ma fonction.
+	// et relire le parsing de so_long et reflechir a tout type de parsing demandez aux autres.
 
-// autre que la premeire et la derniere
-// si ya un espace il doit y avoir forcement 1 avant et apres lespace.
+	// autre que la premeire et la derniere
+	// si ya un espace il doit y avoir forcement 1 avant et apres lespace.
 
-// cas du 0 et 0 quand ya un espace qui arrive en colone
-// bien limager.
+	// cas du 0 et 0 quand ya un espace qui arrive en colone
+	// bien limager.
 
-// if == 0
-// if i > a la colone du haut c cuit
-// if i > a la colone du bas c cuit
+	// if == 0
+	// if i > a la colone du haut c cuit
+	// if i > a la colone du bas c cuit
 
-// tester le code juste au dessus dans les commentaire le if i >
+	// tester le code juste au dessus dans les commentaire le if i >
