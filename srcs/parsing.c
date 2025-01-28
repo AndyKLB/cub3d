@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/28 12:28:46 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:35:35 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,9 @@ void	check_wall(t_cub3d *cub3d)
 					|| (cub3d->maps[j][i] == '0'
 						&& i > (int)ft_strlen(cub3d->maps[j + 1]) - 1))
 					msg_error("0 not surrounded by wall", cub3d);
-				else if (cub3d->maps[j][i] == 0)
+				else if (cub3d->maps[j][i] == '0')
 					flag = 1;
-				else if (cub3d->maps[j][i] == 1 && flag)
+				else if (cub3d->maps[j][i] == '1' && flag)
 					flag = 0;
 				i++;
 			}
@@ -177,6 +177,17 @@ int	checkformat(t_cub3d *cub3d, char *path)
 	return (Success);
 }
 
+
+
+void	checkmap(t_cub3d *cub3d)
+{
+	if (find(cub3d->maps)) // autre caractere
+		msg_error("find", cub3d);
+	if (countplayer(cub3d->maps) != 1) // plus dun player
+		msg_error("countplayer", cub3d);
+	check_wall(cub3d); // entourer de mur
+	fill_space_one(cub3d->maps);
+}
 int	msg_error(char *msg, t_cub3d *cub3d)
 {
 	if (cub3d->celling)
@@ -197,15 +208,6 @@ int	msg_error(char *msg, t_cub3d *cub3d)
 	exit(1);
 }
 
-void	checkmap(t_cub3d *cub3d)
-{
-	if (find(cub3d->maps)) // autre caractere
-		msg_error("find", cub3d);
-	if (countplayer(cub3d->maps) != 1) // plus dun player
-		msg_error("countplayer", cub3d);
-	check_wall(cub3d); // entourer de mur
-	fill_space_one(cub3d->maps);
-}
 // si ya un espace tu cherches jusqua trouver quelque chose si cest autre chose qu'un 1 cest error
 // check les 1, si ya pas full 1 apres le premier 1 trouver cest 0.
 // extension cub.

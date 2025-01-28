@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/28 12:31:23 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:14:36 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,6 @@ void	map_reader(t_cub3d *cub3d, char *path)
 			break ;
 		buff = ft_strjoinfree(buff, line);
 		free(line);
-	}
-	if (!*buff)
-	{
-		free(buff);
-		return ;
 	}
 	init_map_textures(cub3d, buff);
 	free(buff);
