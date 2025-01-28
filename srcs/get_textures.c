@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/28 14:35:56 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:42:11 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,19 @@ void	get_chararacter_pos(char **map, t_cub3d *cub3d) // ajouter un break
 
 // a revoir pour la gestion du strdup!!
 // init strdup incorrect a revoir!!
+// probleme avec square map espace EA semble poser probleme " textures/....."
 
 void	copy_element(char *textures, char **element)
 {
 	int	i;
 
 	i = 0;
+	if (*element)
+	{
+		free(*element);
+		*element = NULL;
+		return ;
+	}
 	while (ft_isspace(textures[i]))
 		i++;
 	*element = ft_strdup((textures + i));
@@ -98,28 +105,93 @@ int	get_wall_texture(char *wall_texture, t_cub3d *cub3d)
 	return (0);
 }
 
-int	check_texture_init(t_cub3d *cub3d)
+int	check_nbr_value(char *floor_or_celling)
 {
-	if (!cub3d->south_element)
+	int	i;
+	int	nb_spc;
+	int	is_not_digit;
+	int is_digit;
+
+	is_digit = 1;
+	is_not_digit = 0;
+	nb_spc = 0;
+	i = 0;
+	while (floor_or_celling[i])
+	{
+		if (!ft_isdigit(floor_or_celling[i])
+			&& !ft_isspace(floor_or_celling[i]))
+			is_not_digit++;
+		if (floor_or_celling[i] == ' ')
+		{
+			nb_spc++;
+			if(ft_isdigit(floor_or_celling[i + 1]))
+				is_digit++;
+		}
+		i++;
+	}
+	if (nb_spc != 2 || is_not_digit || is_digit != 3)
 		return (1);
-	if (!cub3d->north_element)
+	return (0);
+}
+void	go_to_end(int *i, char *dir_path, char c)
+{
+	while (dir_path[*i])
+		(*i)++;
+	while (dir_path[*i] != c && *i > 0)
+		(*i)--;
+}
+
+// 1 pourquoi forbidden.cub bad ? a revoir
+int	check_dir_textures(char **dir_path)
+{
+	DIR		*dir;
+	int		i;
+	char	*dir_strim;
+
+	if (!*dir_path)
 		return (1);
-	if (!cub3d->west_element)
+	i = 0;
+	*dir_path = ft_strtrim_free(*dir_path, " ");
+	go_to_end(&i, *dir_path, '/');
+	dir_strim = ft_rsubstr(*dir_path, i, (ft_strlen(*dir_path)));
+	if (!dir_strim)
 		return (1);
-	if (!cub3d->east_element)
-		return (1);
-	if (!cub3d->floor)
-		return (1);
-	if (!cub3d->celling)
+	dir = opendir(dir_strim);
+	if (!dir)
+		return (free(dir_strim), 1);
+	closedir(dir);
+	free(dir_strim);
+	i = 0;
+	go_to_end(&i, *dir_path, '.');
+	if (ft_strictcmp((*dir_path + i), ".xpm"))
 		return (1);
 	return (0);
 }
 
-void remove_comma(char *element)
+int	check_texture_init(t_cub3d *cub3d) // 1
 {
-	int		i;
+	if (!cub3d->south_element || check_dir_textures(&cub3d->south_element))
+		return (1);
+	if (!cub3d->north_element || check_dir_textures(&cub3d->north_element))
+		return (1);
+	if (!cub3d->west_element || check_dir_textures(&cub3d->west_element))
+		return (1);
+	if (!cub3d->east_element || check_dir_textures(&cub3d->east_element))
+		return (1);
+	if (!cub3d->floor || check_nbr_value(cub3d->floor))
+		return (1);
+	if (!cub3d->celling || check_nbr_value(cub3d->celling))
+		return (1);
+	return (0);
+}
+
+void	remove_comma(char *element)
+{
+	int	i;
 
 	i = 0;
+	if (!element)
+		return;
 	while (element[i])
 	{
 		if (element[i] == ',')
@@ -130,7 +202,7 @@ void remove_comma(char *element)
 
 int	get_texture(t_cub3d *cub3d, char **tmp_texture)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	get_chararacter_pos(cub3d->maps, cub3d);
