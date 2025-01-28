@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/27 14:25:41 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:31:23 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,35 +45,49 @@ void	separate_map_texture(int *j, int *i, char **map)
 		|| check_textures_caracters(map[*i]) || line_is_fullspace(map[*i]))
 		(*i)++;
 }
-void	splits_elements(t_cub3d *cub3d, char *buff, char ***tmp_texture)
+char	**splits_elements(char *buff)
 {
-	*tmp_texture = ft_split(buff, '\n');
-	if (!*tmp_texture)
-		return ;
-	cub3d->maps = ft_split((buff), '\n');
-	if (!cub3d->maps)
-	{
-		free_strs(*tmp_texture);
-		return ;
-	}
+	char	**new;
+
+	new = ft_split(buff, '\n');
+	if (!new)
+		return (NULL);
+	return (new);
 }
 
-void	init_map_textures(t_cub3d *cub3d, char *buff, char ***tmp_texture)
+void	init_map_textures(t_cub3d *cub3d, char *buff)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	**tmp_texture;
 
+	tmp_texture = NULL;
 	i = 0;
 	j = 0;
-	splits_elements(cub3d, buff, tmp_texture);
+	tmp_texture = splits_elements(buff);
+	if (!tmp_texture)
+		return ;
+	cub3d->maps = splits_elements(buff);
+	if (!cub3d->maps)
+	{
+		free_strs(tmp_texture);
+		return ;
+	}
 	if (check_elements_order(cub3d) == 1)
-		msg_error(ERRORDR, cub3d); // free les splits
+	{
+		free_strs(tmp_texture);
+		msg_error(ERRORDR, cub3d);
+	}
 	else if (check_elements_order(cub3d) == 2)
-		msg_error(ERRNOMAP, cub3d); // free les splits
+	{
+		free_strs(tmp_texture);
+		msg_error(ERRNOMAP, cub3d);
+	}
 	separate_map_texture(&j, &i, cub3d->maps);
 	set_map(i, &cub3d->maps);
-	set_textures_info(j, i, tmp_texture);
-	get_texture(cub3d, *tmp_texture);
+	set_textures_info(j, i, &tmp_texture);
+	get_texture(cub3d, tmp_texture);
+	free_strs(tmp_texture);
 }
 
 void	map_reader(t_cub3d *cub3d, char *path)
@@ -81,12 +95,16 @@ void	map_reader(t_cub3d *cub3d, char *path)
 	int		fd;
 	char	*buff;
 	char	*line;
-	char	**tmp_texture_info;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return ;
 	buff = ft_strdup("");
+	if (!buff)
+	{
+		close(fd);
+		return ;
+	}
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -100,9 +118,7 @@ void	map_reader(t_cub3d *cub3d, char *path)
 		free(buff);
 		return ;
 	}
-	init_map_textures(cub3d, buff, &tmp_texture_info);
-	free_strs(tmp_texture_info);
-	tmp_texture_info = NULL;
+	init_map_textures(cub3d, buff);
 	free(buff);
 	close(fd);
 }

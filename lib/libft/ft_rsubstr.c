@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rsubstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:32:35 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/25 22:03:52 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:43:59 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,25 @@
 char	*ft_rsubstr(char const *s, unsigned int end, size_t len)
 {
 	char	*new;
+	size_t	i;
+	size_t	s_len;
 
+	s_len = ft_strlen(s);
+	i = 0;
 	if (!s)
 		return (NULL);
-	if (end <= 0)
-		len = 0;
-	else if (len > (ft_strlen(s) - ft_strlen(s + end)))
-		len = ft_strlen(s) - ft_strlen(s + end);
+	if (end > s_len)
+		end = s_len;
+	if (len > end)
+		len = end;
 	new = malloc(sizeof(char) * len + 1);
 	if (!new)
 		return (NULL);
-	new[len + 1] = '\0';
-	while ((int)len >= 0)
+	while (i < len)
 	{
-		new[len] = s[len];
-		len--;
+		new[i] = s[i];
+		i++;
 	}
+	new[i] = '\0';
 	return (new);
 }

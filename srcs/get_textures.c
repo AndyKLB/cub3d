@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/26 01:40:34 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:50:31 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,40 +179,19 @@ int	check_texture_init(t_cub3d *cub3d) // 1
 	return (0);
 }
 
-char	*remove_comma(char *element)
+void	remove_comma(char *element)
 {
-	int		i;
-	int		j;
-	size_t	size_element;
-	char	*new;
+	int	i;
 
+	i = 0;
 	if (!element)
-		return (NULL);
-	size_element = ft_strlen(element);
-	i = 0;
-	j = 0;
-	while (element[i])
-	{
-		if (element[i] == ',')
-			j++;
-		i++;
-	}
-	if (j != 2)
-		return (NULL);
-	new = malloc(sizeof(char) * (size_element + 1));
-	if (!new)
-		return (NULL);
-	i = 0;
+		return ;
 	while (element[i])
 	{
 		if (element[i] == ',')
 			element[i] = ' ';
-		new[i] = element[i];
 		i++;
 	}
-	new[i] = '\0';
-	free(element);
-	return (new);
 }
 
 int	get_texture(t_cub3d *cub3d, char **tmp_texture)
@@ -227,8 +206,8 @@ int	get_texture(t_cub3d *cub3d, char **tmp_texture)
 			&& !get_floor_celling_textures(tmp_texture[i], cub3d))
 			break ;
 	}
-	cub3d->floor = remove_comma(cub3d->floor);
-	cub3d->celling = remove_comma(cub3d->celling);
+	remove_comma(cub3d->floor);
+	remove_comma(cub3d->celling);
 	if (check_texture_init(cub3d))
 		return (msg_error(ERRTEXT, cub3d), 1);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/27 14:10:38 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:28:46 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int	msg_error(char *msg, t_cub3d *cub3d)
 		free(cub3d->north_element);
 	if (cub3d->south_element)
 		free(cub3d->south_element);
-	if (cub3d->maps)
+	if (cub3d->maps && *cub3d->maps)
 		free_strs(cub3d->maps);
 	ft_printf_fd(2, msg);
 	exit(1);
