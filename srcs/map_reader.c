@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/28 14:14:36 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:29:33 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**splits_elements(char *buff)
 	char	**new;
 
 	new = ft_split(buff, '\n');
-	if (!new)
+	if (!new || !*new)
 		return (NULL);
 	return (new);
 }

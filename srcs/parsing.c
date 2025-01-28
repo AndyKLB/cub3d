@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/28 13:35:35 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:38:30 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,10 +177,10 @@ int	checkformat(t_cub3d *cub3d, char *path)
 	return (Success);
 }
 
-
-
 void	checkmap(t_cub3d *cub3d)
 {
+	if (!cub3d->maps)
+		msg_error(ERRNOMAP, cub3d);
 	if (find(cub3d->maps)) // autre caractere
 		msg_error("find", cub3d);
 	if (countplayer(cub3d->maps) != 1) // plus dun player
@@ -202,8 +202,8 @@ int	msg_error(char *msg, t_cub3d *cub3d)
 		free(cub3d->north_element);
 	if (cub3d->south_element)
 		free(cub3d->south_element);
-	if (cub3d->maps && *cub3d->maps)
-		free_strs(cub3d->maps);
+	// if (cub3d->maps && *cub3d->maps)
+	// 	free_strs(cub3d->maps);
 	ft_printf_fd(2, msg);
 	exit(1);
 }
@@ -217,19 +217,19 @@ int	msg_error(char *msg, t_cub3d *cub3d)
 // wall
 // peut commmencer par espace first and final caractere 1 et apres peut avoir des espace pour la ligne 1.
 // ensuite peut commencer par espace mais le premier caractere doit etre 1. donc sois espace soit 1, et apres le 1 ce que tu veux.mais doit avoir 1 pour boucler et apres espace.
-	// peut commencer par un espace derniere first et final caractere 1
+// peut commencer par un espace derniere first et final caractere 1
 
-	// relire ma fonction.
-	// et relire le parsing de so_long et reflechir a tout type de parsing demandez aux autres.
+// relire ma fonction.
+// et relire le parsing de so_long et reflechir a tout type de parsing demandez aux autres.
 
-	// autre que la premeire et la derniere
-	// si ya un espace il doit y avoir forcement 1 avant et apres lespace.
+// autre que la premeire et la derniere
+// si ya un espace il doit y avoir forcement 1 avant et apres lespace.
 
-	// cas du 0 et 0 quand ya un espace qui arrive en colone
-	// bien limager.
+// cas du 0 et 0 quand ya un espace qui arrive en colone
+// bien limager.
 
-	// if == 0
-	// if i > a la colone du haut c cuit
-	// if i > a la colone du bas c cuit
+// if == 0
+// if i > a la colone du haut c cuit
+// if i > a la colone du bas c cuit
 
-	// tester le code juste au dessus dans les commentaire le if i >
+// tester le code juste au dessus dans les commentaire le if i >
