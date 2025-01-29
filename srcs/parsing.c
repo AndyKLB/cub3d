@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/28 15:38:30 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:46:20 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	find(char **map) // il verifie ligne par ligne.
+int find(char **map) // il verifie ligne par ligne.
 {
 	int i;
 	int j;
@@ -25,9 +25,7 @@ int	find(char **map) // il verifie ligne par ligne.
 	{
 		while (map[j][i])
 		{
-			if (map[j][i] != 'N' && map[j][i] != 'S' && map[j][i] != 'W'
-				&& map[j][i] != '0' && map[j][i] != 'E' && map[j][i] != '1'
-				&& map[j][i] != ' ')
+			if (map[j][i] != 'N' && map[j][i] != 'S' && map[j][i] != 'W' && map[j][i] != '0' && map[j][i] != 'E' && map[j][i] != '1' && map[j][i] != ' ')
 				return (1);
 			i++;
 		}
@@ -36,7 +34,7 @@ int	find(char **map) // il verifie ligne par ligne.
 	}
 	return (0);
 }
-int	countplayer(char **map) // a voir si je fais en map ou non
+int countplayer(char **map) // a voir si je fais en map ou non
 {
 	int i;
 	int j;
@@ -50,8 +48,7 @@ int	countplayer(char **map) // a voir si je fais en map ou non
 	{
 		while (map[j][i])
 		{
-			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E'
-				|| map[j][i] == 'W')
+			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E' || map[j][i] == 'W')
 				count++;
 			i++;
 		}
@@ -60,7 +57,7 @@ int	countplayer(char **map) // a voir si je fais en map ou non
 	}
 	return (count);
 }
-int	checktricky(t_cub3d *cub3d, char **map, int j, int i)
+int checktricky(t_cub3d *cub3d, char **map, int j, int i)
 {
 	if (!map)
 		return (1);
@@ -92,17 +89,17 @@ int	checktricky(t_cub3d *cub3d, char **map, int j, int i)
 	return (msg_error("not enclosed by wall", cub3d));
 }
 
-void	check_wall(t_cub3d *cub3d)
+void check_wall(t_cub3d *cub3d)
 {
-	int	i;
-	int	j;
-	int	flag;
+	int i;
+	int j;
+	int flag;
 
 	i = 0;
 	flag = 0;
 	j = 0;
 	if (!cub3d->maps)
-		return ;
+		return;
 	while (cub3d->maps[j])
 	{
 		while (cub3d->maps[j][i] == ' ' || cub3d->maps[j][i] == '\t')
@@ -125,10 +122,7 @@ void	check_wall(t_cub3d *cub3d)
 		{
 			while (cub3d->maps[j][i])
 			{
-				if ((cub3d->maps[j][i] == '0'
-						&& i > (int)ft_strlen(cub3d->maps[j - 1]) - 1)
-					|| (cub3d->maps[j][i] == '0'
-						&& i > (int)ft_strlen(cub3d->maps[j + 1]) - 1))
+				if ((cub3d->maps[j][i] == '0' && i > (int)ft_strlen(cub3d->maps[j - 1]) - 1) || (cub3d->maps[j][i] == '0' && i > (int)ft_strlen(cub3d->maps[j + 1]) - 1))
 					msg_error("0 not surrounded by wall", cub3d);
 				else if (cub3d->maps[j][i] == '0')
 					flag = 1;
@@ -145,10 +139,10 @@ void	check_wall(t_cub3d *cub3d)
 	}
 }
 
-int	checkformat(t_cub3d *cub3d, char *path)
+int checkformat(t_cub3d *cub3d, char *path)
 {
-	int	len;
-	int	fd;
+	int len;
+	int fd;
 
 	len = ft_strlen(path);
 	if (open(path, __O_DIRECTORY) >= 0)
@@ -163,21 +157,15 @@ int	checkformat(t_cub3d *cub3d, char *path)
 			msg_error(ERREXT, cub3d);
 		fd = open(path, O_RDONLY);
 		if (fd < 0)
-		{
-			perror(strerror(fd));
-			exit(1);
-		}
+			msg_error("Unknown error -1: Permission denied\n", cub3d);
 		if (read(fd, 0, 0) < 0)
-		{
-			perror(strerror(fd));
-			exit(1);
-		}
+			msg_error("Unknown error -1: Bad file descriptor\n", cub3d);
 		close(fd);
 	}
 	return (Success);
 }
 
-void	checkmap(t_cub3d *cub3d)
+void checkmap(t_cub3d *cub3d)
 {
 	if (!cub3d->maps)
 		msg_error(ERRNOMAP, cub3d);
@@ -188,22 +176,40 @@ void	checkmap(t_cub3d *cub3d)
 	check_wall(cub3d); // entourer de mur
 	fill_space_one(cub3d->maps);
 }
-int	msg_error(char *msg, t_cub3d *cub3d)
+int msg_error(char *msg, t_cub3d *cub3d)
 {
 	if (cub3d->celling)
+	{
 		free(cub3d->celling);
+		cub3d->celling = NULL;
+	}
 	if (cub3d->floor)
+	{
 		free(cub3d->floor);
+		cub3d->floor = NULL;
+	}
 	if (cub3d->east_element)
+	{
 		free(cub3d->east_element);
+		cub3d->east_element = NULL;
+	}
 	if (cub3d->west_element)
+	{
 		free(cub3d->west_element);
+		cub3d->west_element = NULL;
+	}
 	if (cub3d->north_element)
+	{
 		free(cub3d->north_element);
+		cub3d->north_element = NULL;
+	}
 	if (cub3d->south_element)
+	{
 		free(cub3d->south_element);
-	// if (cub3d->maps && *cub3d->maps)
-	// 	free_strs(cub3d->maps);
+		cub3d->south_element = NULL;
+	}
+	if (cub3d->maps && *cub3d->maps)
+		free_superstrs(&cub3d->maps);
 	ft_printf_fd(2, msg);
 	exit(1);
 }

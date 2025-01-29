@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/28 15:42:11 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:43:57 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,6 @@ int	get_texture(t_cub3d *cub3d, char **tmp_texture)
 	remove_comma(cub3d->floor);
 	remove_comma(cub3d->celling);
 	if (check_texture_init(cub3d))
-		return (msg_error(ERRTEXT, cub3d), 1);
+		return (free_strs(tmp_texture), msg_error(ERRTEXT, cub3d), 1);
 	return (0);
 }

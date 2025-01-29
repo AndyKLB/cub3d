@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:14:57 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/27 14:01:59 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:43:00 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	print_img_struct(t_img *img)
+void print_img_struct(t_img *img)
 {
 	printf("###IMG STRUCT##\n");
-	printf("img = %p\nimg height = %d\nimg width = %d\nlinelength = %d\n\n",img, img->height,
-		img->width, img->line_length);
+	printf("img = %p\nimg height = %d\nimg width = %d\nlinelength = %d\n\n", img, img->height,
+		   img->width, img->line_length);
 }
-void	print_map_struct(t_map *map)
+void print_map_struct(t_map *map)
 {
 	printf("###MAP STRUCT##\n");
-	printf("map = %p\ncount = %d\ncountline = %d\nindex = %d\nline = %s\n\n",map, map->count,
-		map->countline, map->index, map->line);
+	printf("map = %p\ncount = %d\ncountline = %d\nindex = %d\nline = %s\n\n", map, map->count,
+		   map->countline, map->index, map->line);
 }
-void	print_cub3d_struct(t_cub3d *cub3d)
+void print_cub3d_struct(t_cub3d *cub3d)
 {
 	printf("###CUB3D STRUCT##\n");
 	printf("map = %p\nimg = %p\n", cub3d->map, cub3d->img);
 	printf("celling = %s\nfloor = %s\n", cub3d->celling, cub3d->floor);
 	printf("east = %s\nnorth = %s\nsouth = %s\nwest = %s\n",
-		cub3d->east_element, cub3d->north_element, cub3d->south_element,
-		cub3d->west_element);
+		   cub3d->east_element, cub3d->north_element, cub3d->south_element,
+		   cub3d->west_element);
 	printf("direction = %c\nplayer  x = %d\nplayer y = %d\n\n\n",
-		cub3d->player_direction, cub3d->player_x, cub3d->player_y);
+		   cub3d->player_direction, cub3d->player_x, cub3d->player_y);
 }
-void	print_map(char **map)
+void print_map(char **map)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (map[i])
@@ -49,7 +49,7 @@ void	print_map(char **map)
 	ft_printf_fd(1, "\n");
 }
 
-void	print_data(t_cub3d *cub3d, bool restr_aff)
+void print_data(t_cub3d *cub3d, bool restr_aff)
 {
 	if (restr_aff)
 	{
@@ -69,7 +69,7 @@ void	print_data(t_cub3d *cub3d, bool restr_aff)
 	}
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	t_cub3d cub3d;
 	t_map map;
@@ -87,6 +87,9 @@ int	main(int argc, char **argv)
 
 		printf("Map valid \n");
 		printf("\xF0\x9F\x92\xA9\n");
+		free_strs(cub3d.maps);
+		cub3d.maps = NULL;
+		msg_error("OK", &cub3d);
 	}
 	return (0);
 }

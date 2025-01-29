@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/27 13:56:47 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:31:40 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define ERRFD "it's empty"
 # define ERREXT "it's not the good format"
 # define ERRORDR "it's not the good order"
-# define ERRNOMAP "no map present"
+# define ERRNOMAP "missing map or textures"
 # define ERRTEXT "err init textures"
 
 typedef struct s_map
@@ -93,7 +93,9 @@ int			line_is_fullspace(char *line_map);
 void		print_data(t_cub3d *cub3d, bool restr_aff);
 void		fill_space_one(char **map);
 int			checkformat(t_cub3d *cub3d, char *path);
+void		free_superstrs(char ***strs);
 void		free_strs(char **strs);
+
 void		map_reader(t_cub3d *cub3d, char *path);
 int			is_news(char c);
 int			is_character(char c);
