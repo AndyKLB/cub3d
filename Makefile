@@ -17,7 +17,8 @@ MLX_FLAG	= -lX11 -lXext
 #######################################################
 ## SOURCES
 SRCS_FILES = parsing.c cub3d.c check_elements_order.c data_init.c free.c map_reader.c \
-			 utils.c get_textures.c game_init.c \
+			 utils.c get_textures.c get_textures_utils1.c get_textures_utils2.c game_init.c \
+			 print_data.c parsing_utils.c map_reader_utils.c \
 
 			
 SRCS_DIR = srcs

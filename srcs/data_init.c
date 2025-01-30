@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@42.fr>                  +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:33:42 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/27 13:36:30 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:14:53 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_cub3d_struct(t_cub3d **cub3d, t_map **map, t_img **img)
 	(*cub3d)->map = *map;
 	(*cub3d)->img = *img;
 }
+
 void	init_map_struct(t_map **map)
 {
 	(*map)->line = NULL;
@@ -36,6 +37,7 @@ void	init_map_struct(t_map **map)
 	(*map)->countline = 0;
 	(*map)->index = 0;
 }
+
 void	init_img_struct(t_img **img)
 {
 	(*img)->width = 0;
@@ -45,8 +47,6 @@ void	init_img_struct(t_img **img)
 
 int	data_init(t_cub3d *cub3d, t_img *img, t_map *map)
 {
-
-
 	init_cub3d_struct(&cub3d, &map, &img);
 	init_map_struct(&cub3d->map);
 	init_img_struct(&cub3d->img);

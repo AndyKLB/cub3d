@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:47:03 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/29 12:49:13 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:39:57 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void free_superstrs(char ***strs)
+void	free_superstrs(char ***strs)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!*strs || !**strs)
-		return;
+		return ;
 	while ((*strs)[i])
 	{
 		free((*strs)[i]);
@@ -27,15 +27,16 @@ void free_superstrs(char ***strs)
 	}
 	free(*strs);
 	*strs = NULL;
-	return;
+	return ;
 }
-void free_strs(char **strs)
+
+void	free_strs(char **strs)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!strs || !*strs)
-		return;
+		return ;
 	while (strs[i])
 	{
 		free(strs[i]);
@@ -44,5 +45,38 @@ void free_strs(char **strs)
 	}
 	free(strs);
 	strs = NULL;
-	return;
+	return ;
+}
+
+void	free_cub3d(t_cub3d *cub3d)
+{
+	if (cub3d->celling)
+		free(cub3d->celling);
+	if (cub3d->floor)
+		free(cub3d->floor);
+	if (cub3d->east_element)
+		free(cub3d->east_element);
+	if (cub3d->west_element)
+		free(cub3d->west_element);
+	if (cub3d->north_element)
+		free(cub3d->north_element);
+	if (cub3d->south_element)
+		free(cub3d->south_element);
+	if (cub3d->maps && *cub3d->maps)
+		free_superstrs(&cub3d->maps);
+}
+
+int	msg_error(char *msg, t_cub3d *cub3d)
+{
+	free_cub3d(cub3d);
+	if (msg)
+		ft_printf_fd(2, "%s\n", msg);
+	exit(1);
+}
+
+void	free_elements(char ***tmp_texture, char **buff, t_cub3d *cub3d)
+{
+	free_strs(*tmp_texture);
+	free(*buff);
+	msg_error(NULL, cub3d);
 }

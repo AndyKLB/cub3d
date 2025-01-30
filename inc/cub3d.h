@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/29 15:31:40 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:38:21 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,27 @@ int			msg_error(char *error, t_cub3d *cub3d);
 int			check_cardinal_caracters(char *line_map);
 int			check_textures_caracters(char *line_map);
 int			line_is_fullspace(char *line_map);
-void		print_data(t_cub3d *cub3d, bool restr_aff);
 void		fill_space_one(char **map);
 int			checkformat(t_cub3d *cub3d, char *path);
 void		free_superstrs(char ***strs);
 void		free_strs(char **strs);
-
 void		map_reader(t_cub3d *cub3d, char *path);
 int			is_news(char c);
 int			is_character(char c);
+int			valid_character(char c);
+void		print_data(t_cub3d *cub3d, bool restr_aff);
+void		get_chararacter_pos(char **map, t_cub3d *cub3d);
+void		remove_comma(char *element);
+int			check_value(char *floor_or_ceilling);
+int			check_nbr_value(char *floor_or_celling);
+int			check_dir_textures(char **dir_path);
+void		check_wall(t_cub3d *cub3d);
+int			countplayer(char **map);
+int			find(char **map);
+void		free_elements(char ***tmp_texture, char **buff, t_cub3d *cub3d);
+char		**splits_elements(char *buff);
+void		separate_map_texture(int *j, int *i, char **map);
+void		set_textures_info(int j, int i, char ***textures_info);
+void		set_map(int i, char ***map);
 
 #endif

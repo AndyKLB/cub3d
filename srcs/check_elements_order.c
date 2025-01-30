@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/30 12:06:59 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:51:56 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,25 @@ int	check_elements_order(t_cub3d *cub3d)
 {
 	int	i;
 	int	j;
-	
+
 	j = 0;
 	i = 0;
 	while ((check_cardinal_caracters(cub3d->maps[i])
 			|| check_textures_caracters(cub3d->maps[i])
 			|| line_is_fullspace(cub3d->maps[i])) && cub3d->maps[i])
 	{
-		if(!line_is_fullspace(cub3d->maps[i]) && cub3d->maps[i])
+		if (!line_is_fullspace(cub3d->maps[i]) && cub3d->maps[i])
 			j++;
 		i++;
 		if (!cub3d->maps[i])
-			return (2);
+			return (ft_printf_fd(2, "%s\n", ERRNOMAP), 2);
 	}
 	if (j != 6)
-		return (2);
+		return (ft_printf_fd(2, "%s\n", ERRNOMAP), 2);
 	while (cub3d->maps[i])
 	{
 		if (!line_is_spcnews(cub3d->maps[i]))
-			return (1);
+			return (ft_printf_fd(2, "%s\n", ERRORDR), 1);
 		i++;
 	}
 	return (0);
