@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements_order.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/29 15:31:06 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:06:59 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,21 @@ int	line_is_spcnews(char *line_map)
 int	check_elements_order(t_cub3d *cub3d)
 {
 	int	i;
-
+	int	j;
+	
+	j = 0;
 	i = 0;
 	while ((check_cardinal_caracters(cub3d->maps[i])
 			|| check_textures_caracters(cub3d->maps[i])
 			|| line_is_fullspace(cub3d->maps[i])) && cub3d->maps[i])
 	{
+		if(!line_is_fullspace(cub3d->maps[i]) && cub3d->maps[i])
+			j++;
 		i++;
 		if (!cub3d->maps[i])
 			return (2);
 	}
-	if (i != 5)
+	if (j != 6)
 		return (2);
 	while (cub3d->maps[i])
 	{

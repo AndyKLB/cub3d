@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:14:57 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/29 13:43:00 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:14:28 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int main(int argc, char **argv)
 		checkformat(&cub3d, argv[1]);
 		// mettre les erreurs dans la fonction car il pourrait y avoir des erreur differente dans une seul fonction
 		map_reader(&cub3d, argv[1]);
-		print_data(&cub3d, 1);
+		// print_data(&cub3d, 1);
 		checkmap(&cub3d);
-		print_data(&cub3d, 0);
+		// print_data(&cub3d, 0);
 
 		printf("Map valid \n");
 		printf("\xF0\x9F\x92\xA9\n");

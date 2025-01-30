@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/29 14:43:57 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:28:54 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	check_nbr_value(char *floor_or_celling)
 	int	i;
 	int	nb_spc;
 	int	is_not_digit;
-	int is_digit;
+	int	is_digit;
 
 	is_digit = 1;
 	is_not_digit = 0;
@@ -124,7 +124,7 @@ int	check_nbr_value(char *floor_or_celling)
 		if (floor_or_celling[i] == ' ')
 		{
 			nb_spc++;
-			if(ft_isdigit(floor_or_celling[i + 1]))
+			if (ft_isdigit(floor_or_celling[i + 1]))
 				is_digit++;
 		}
 		i++;
@@ -168,6 +168,33 @@ int	check_dir_textures(char **dir_path)
 	return (0);
 }
 
+int	check_value(char *floor_or_ceilling)
+{
+	int		i;
+	int		j;
+	char	*value;
+
+	value = 0;
+	i = 0;
+	j = 0;
+	while (floor_or_ceilling[i])
+	{
+		while (ft_isspace(floor_or_ceilling[i]))
+			i++;
+		while (!ft_isdigit(floor_or_ceilling[i]))
+			i++;
+		j = i;
+		while (ft_isdigit(floor_or_ceilling[j]))
+			j++;
+		value = ft_substr(floor_or_ceilling, i, (j - i));
+		i = j;
+		if (ft_atoi(value) > 255)
+			return (free(value), 1);
+		free(value);
+	}
+	return (0);
+}
+
 int	check_texture_init(t_cub3d *cub3d) // 1
 {
 	if (!cub3d->south_element || check_dir_textures(&cub3d->south_element))
@@ -178,9 +205,11 @@ int	check_texture_init(t_cub3d *cub3d) // 1
 		return (1);
 	if (!cub3d->east_element || check_dir_textures(&cub3d->east_element))
 		return (1);
-	if (!cub3d->floor || check_nbr_value(cub3d->floor))
+	if (!cub3d->floor || check_nbr_value(cub3d->floor)
+		|| check_value(cub3d->floor))
 		return (1);
-	if (!cub3d->celling || check_nbr_value(cub3d->celling))
+	if (!cub3d->celling || check_nbr_value(cub3d->celling)
+		|| check_value(cub3d->celling))
 		return (1);
 	return (0);
 }
@@ -191,7 +220,7 @@ void	remove_comma(char *element)
 
 	i = 0;
 	if (!element)
-		return;
+		return ;
 	while (element[i])
 	{
 		if (element[i] == ',')
