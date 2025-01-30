@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/30 15:38:21 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:48:37 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 # define ERRORDR "it's not the good order"
 # define ERRNOMAP "missing map or textures"
 # define ERRTEXT "err init textures"
+# define ERR_MALLOC "malloc failed"
+
+# define WIN_W 1280
+# define WIN_H 720
 
 typedef struct s_map
 {
@@ -80,6 +84,10 @@ typedef struct s_cub3d
 	t_map	*map;
 	t_img	*img;
 }			t_cub3d;
+
+typedef struct s_ray
+{
+}			t_ray;
 
 int			check_elements_order(t_cub3d *cub3d);
 int			data_init(t_cub3d *cub3d, t_img *img, t_map *map);
