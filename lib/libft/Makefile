@@ -7,6 +7,8 @@ FLAGS = -Wall -Wextra -Werror -I.
 AR = ar
 RM = rm -f
 
+OBJ_DIR = obj
+
 ##########################################################
 ## SOURCES
 
@@ -23,42 +25,49 @@ FILES = ft_strdup.c ft_atoi.c ft_bzero.c \
 		ft_strtrim.c ft_striteri.c ft_strjoin.c \
 		ft_split.c
 
-OBJS = $(FILES:.c=.o)
-
 BONUS = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 		ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
 
-ZIYADA = ft_atol.c get_next_line.c ft_strictcmp.c ft_rsubstr.c\
+ZIYADA = ft_atol.c get_next_line.c ft_strictcmp.c ft_rsubstr.c
 
 PRINTFD = ft_printf_fd/ft_print_unsigned.c ft_printf_fd/ft_printchar.c \
           ft_printf_fd/ft_printf_fd.c ft_printf_fd/ft_printhex.c \
           ft_printf_fd/ft_printnbr.c ft_printf_fd/ft_printptr.c \
           ft_printf_fd/ft_printstr.c
 
-BOBJS = $(BONUS:.c=.o)
-ZIYOBJS = $(ZIYADA:.c=.o)
-PRINTOBJS = $(PRINTFD:.c=.o)
+# Création des fichiers objets dans obj/
+OBJS = $(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
+BOBJS = $(addprefix $(OBJ_DIR)/, $(BONUS:.c=.o))
+ZIYOBJS = $(addprefix $(OBJ_DIR)/, $(ZIYADA:.c=.o))
+PRINTOBJS = $(addprefix $(OBJ_DIR)/, $(PRINTFD:.c=.o))
+
+OBJ_SUBDIRS = $(sort $(dir $(PRINTOBJS)))
 
 ##########################################################
 ## RULES
 
-.c.o:
-	${CC} ${FLAGS} -c $< -o $@
-
-${NAME}: $(OBJS) $(BOBJS) $(ZIYOBJS) $(PRINTOBJS)
-	${AR} rcs ${NAME} $(OBJS) $(BOBJS) $(ZIYOBJS) $(PRINTOBJS)
-
 all: $(NAME)
 
+# Création du dossier obj et sous-dossiers si nécessaire
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR) $(OBJ_SUBDIRS)
+
+# Compilation avec placement des .o dans obj/
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	$(CC) $(FLAGS) -c $< -o $@
+
+$(NAME): $(OBJS) $(BOBJS) $(ZIYOBJS) $(PRINTOBJS)
+	$(AR) rcs $(NAME) $(OBJS) $(BOBJS) $(ZIYOBJS) $(PRINTOBJS)
+
 clean:
-	${RM} $(OBJS) $(BOBJS) $(ZIYOBJS) $(PRINTOBJS)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
-	${RM} ${NAME}
+	$(RM) $(NAME)
 
 re: fclean all
 
 bonus: $(BOBJS) $(ZIYOBJS) $(PRINTOBJS)
-	${AR} rcs ${NAME} $(OBJS) $(BOBJS) $(ZIYOBJS) $(PRINTOBJS)
+	$(AR) rcs $(NAME) $(OBJS) $(BOBJS) $(ZIYOBJS) $(PRINTOBJS)
 
 .PHONY: all clean fclean re bonus
