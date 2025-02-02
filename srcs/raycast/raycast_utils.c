@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:55:10 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/30 13:55:58 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/01 12:33:14 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	draw_pixels(t_cub3d *cub3d, t_ray *ray, int x, int **buffer)
 	{
 		ray->tex[Y] = (int)ray->texpos & (IMG_SIZE - 1);
 		ray->texpos += ray->texstep;
-		ray->color = game->tex[ray->texnum][IMG_SIZE * ray->tex[Y]
+		ray->color = cub3d->tex[ray->texnum][IMG_SIZE * ray->tex[Y]
 			+ ray->tex[X]];
 		buffer[ray->y][x] = ray->color;
 	}
@@ -84,10 +84,10 @@ void	dda_algo(t_cub3d *cub3d, t_ray *ray)
 			ray->side = 1;
 		}
 		if (ray->map[Y] < 0.25 || ray->map[X] < 0.25
-			|| ray->map[Y] > game->map->height - 0.25
-			|| ray->map[X] > game->map->width - 1.25)
+			|| ray->map[Y] > cub3d->map->height - 0.25
+			|| ray->map[X] > cub3d->map->width - 1.25)
 			break ;
-		if (game->map->grid[ray->map[Y]][ray->map[X]] == '1')
+		if (cub3d->map->grid[ray->map[Y]][ray->map[X]] == '1')
 			ray->hit = 1;
 	}
 }

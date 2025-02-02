@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/30 15:48:37 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:25:48 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,51 @@ typedef struct s_cub3d
 	t_img	*img;
 }			t_cub3d;
 
+
 typedef struct s_ray
 {
-}			t_ray;
+	double	pos[2];
+	double	dir[2];
+	double	plane[2];
+	double	camera[2];
+	double	raydir[2];
+	double	sidedist[2];
+	double	deltadist[2];
+	int		map[2];
+	int		step[2];
+	int		tex[2];
+	int		move[2];
+	int		rotate;
+	int		moved;
+	int		lineh;
+	int		drawstart;
+	int		drawend;
+	bool	hit;
+	int		side;
+	double	perpwalldist;
+	int		texnum;
+	double	wallx;
+	double	texstep;
+	double	texpos;
+	int		color;
+	int		y;
+}	t_ray;
+
+# define PLAYEROTATE_SPEED 0.03
+# define ROTATE_SPEED 0.04
+# define WALL 1
+# define FLOOR 0
+# define PLAYER_N 'N'
+# define PLAYER_S 'S'
+# define PLAYER_E 'E'
+# define PLAYER_W 'W'
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
+# define X 0
+# define Y 1
+# define IMG_SIZE 64
 
 int			check_elements_order(t_cub3d *cub3d);
 int			data_init(t_cub3d *cub3d, t_img *img, t_map *map);

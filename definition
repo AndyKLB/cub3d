@@ -1,0 +1,15 @@
+// sidedist permet de savoir quel distance il ya avec le cote que ce soit x ou y 
+// deltadist = sert a avance de pas en pas de case en case entiere.
+// side c pour savoir ou est le prochain mur, et lautre pour savoir la distance dun mur entier. pour le dda.
+// plus raydir et petit lpus delta est grand.
+
+
+// raydir et petit je pense logiquement c quil vise un angle de case.
+// dda 
+// distance la prochaine intersection  - la case entiere.
+ // Plus perpwalldist est petite, plus le mur est grand sur l'écran (effet de perspective).
+// si perpwalldist = 1 alors lineh = WIN_H le mur fait tout lecran
+// if = 2 alors lineh = win_h/2 le mur fais la moitie de lecran en hauteur
+
+
+// 
