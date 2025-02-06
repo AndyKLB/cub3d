@@ -11,19 +11,22 @@ NAME = cub3d
 CC = cc
 RM = rm -f
 FLAG = -Wall -Wextra -Werror -g3
-MLX_FLAG = -lX11 -lXext
+MLX_FLAG = -lX11 -lXext -lm
 
 #######################################################
 ## SOURCES
 SRCS_FILES = parsing.c cub3d.c check_elements_order.c data_init.c free.c map_reader.c \
 			 utils.c get_textures.c get_textures_utils1.c get_textures_utils2.c game_init.c \
-			 print_data.c parsing_utils.c map_reader_utils.c \
+			 print_data.c parsing_utils.c map_reader_utils.c init_textures.c init_player.c \
 
+RAY_FILES = raycast_utils.c raycast.c
+
+RAY_DIR = srcs/raycast
 SRCS_DIR = srcs
-OBJ_DIR = obj
+SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES)) $(addprefix $(RAY_DIR)/, $(RAY_FILES))
 
-SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
-OBJECTS = $(addprefix $(OBJ_DIR)/, $(SRCS_FILES:.c=.o))
+OBJ_DIR = obj
+OBJECTS = $(addprefix $(OBJ_DIR)/, $(SRCS_FILES:.c=.o)) $(addprefix $(OBJ_DIR)/, $(RAY_FILES:.c=.o))
 
 #######################################################
 ## RULES
@@ -31,6 +34,9 @@ all: $(NAME)
 
 # Création du dossier obj si nécessaire et compilation des .c en .o dans obj/
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(FLAG) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(RAY_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(FLAG) -c $< -o $@
 
 # Création du dossier obj si non existant

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:47:03 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/30 15:39:57 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:49:43 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	free_strs(char **strs)
 
 void	free_cub3d(t_cub3d *cub3d)
 {
+	// free mlx
+	// free win
 	if (cub3d->celling)
 		free(cub3d->celling);
 	if (cub3d->floor)

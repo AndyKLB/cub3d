@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 12:57:21 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/30 13:38:38 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/06 16:51:36 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	img_addr(t_cub3d *cub3d, int **buffer, int i)
 	int		index;
 	t_img	img;
 
-	init_img(&img);
 	img.mlx_img = mlx_new_image(cub3d->mlx, WIN_W, WIN_H);
 	img.addr = (int *)mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len,
 			&img.endian);
@@ -65,11 +64,11 @@ static void	ray_loop(t_cub3d *cub3d, t_ray *ray, int **buf)
 	x = 0;
 	while (x < WIN_W)
 	{
-		ray_pos(ray, x);
-		side_dist(ray);
-		dda_algo(cub3d, ray);
-		start_draw(ray);
-		draw_pixels(cub3d, ray, x, buf);
+		initialize_ray_direction(ray, x);
+		calculate_initial_side_distances(ray);
+		perform_dda(cub3d, ray);
+		initialize_wall_draw(ray);
+		render_wall_pixels(cub3d, ray, x, buf);
 		x++;
 	}
 	img_addr(cub3d, buf, -1);
@@ -84,7 +83,7 @@ void	raycasting(t_cub3d *cub3d)
 	i_buf = 0;
 	buf = ft_calloc(WIN_H + 1, sizeof(int *));
 	if (!buf)
-		msg_error(cub3d, ERR_MALLOC);
+		msg_error(ERR_MALLOC, cub3d);
 	while (i_buf <= WIN_H)
 	{
 		buf[i_buf] = ft_calloc(WIN_W + 1, sizeof(int));
@@ -96,7 +95,7 @@ void	raycasting(t_cub3d *cub3d)
 				i_buf--;
 			}
 			free(buf);
-			msg_error(cub3d, ERR_MALLOC);
+			msg_error(ERR_MALLOC, cub3d);
 		}
 		i_buf++;
 	}

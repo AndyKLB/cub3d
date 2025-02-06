@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   print_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:15:36 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/30 14:31:53 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:00:39 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	print_img_struct(t_img *img)
-{
-	printf("###IMG STRUCT##\n");
-	printf("img = %p\nimg height = %d\nimg width = %d\nlinelength = %d\n\n",
-		img, img->height, img->width, img->line_length);
-}
+// void	print_img_struct(t_img *img)
+// {
+// 	printf("###IMG STRUCT##\n");
+// 	printf("img = %p\nimg height = %d\nimg width = %d\nlinelength = %d\n\n",
+// 		img, img->height, img->width, img->line_length);
+// }
 
-void	print_map_struct(t_map *map)
-{
-	printf("###MAP STRUCT##\n");
-	printf("map = %p\ncount = %d\ncountline = %d\nindex = %d\nline = %s\n\n",
-		map, map->count, map->countline, map->index, map->line);
-}
+// void	print_map_struct(t_map *map)
+// {
+// 	printf("###MAP STRUCT##\n");
+// 	printf("map = %p\ncount = %d\ncountline = %d\nindex = %d\nline = %s\n\n",
+// 		map, map->count, map->countline, map->index, map->line);
+// }
 
 void	print_cub3d_struct(t_cub3d *cub3d)
 {
@@ -57,8 +57,8 @@ void	print_data(t_cub3d *cub3d, bool restr_aff)
 	if (restr_aff)
 	{
 		print_cub3d_struct(cub3d);
-		print_img_struct(cub3d->img);
-		print_map_struct(cub3d->map);
+		// print_img_struct(cub3d->img);
+		// print_map_struct(cub3d->map);
 		if (cub3d->maps)
 		{
 			ft_printf_fd(1, "##BEFORE FILL_ONE##\n\n");

@@ -11,5 +11,28 @@
 // si perpwalldist = 1 alors lineh = WIN_H le mur fait tout lecran
 // if = 2 alors lineh = win_h/2 le mur fais la moitie de lecran en hauteur
 
+/*🔹 Formule :
 
-// 
+deltadistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+deltadistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+
+📌 Pourquoi ce calcul ?
+
+    On imagine un grillage de cases (comme une carte en pixels).
+    deltadistX : distance pour passer d’une ligne verticale à la suivante.
+    deltadistY : distance pour passer d’une ligne horizontale à la suivante. */
+
+/* 🔹 sidedist → Distance actuelle jusqu’à la prochaine intersection
+
+📌 Stocke la distance du rayon jusqu’à la prochaine ligne de grille verticale (sidedistX) et horizontale (sidedistY).
+
+🔹 Initialisation :*/
+
+
+//side cest actuellement la distance
+// et delta cest la distance de base.
+
+// donc side pour savoir le prochain mur
+// delta pour que le rayon se deplace de case en case par rapport a se prochain mur.
+
+// -> dans cet exemple il est plus proche de l'horizontal du coup on avance de case en case de maniere horizontal.
