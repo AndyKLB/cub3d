@@ -6,12 +6,29 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:47:03 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/10 16:09:36 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:33:46 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+void free_supertab(int ***tab)
+{
+	int i;
+
+	i = 0;
+	if (!*tab)
+		return;
+	while (i < 4)
+	{
+		free((*tab)[i]);
+		(*tab)[i] = NULL;
+		i++;
+	}
+	free(*tab);
+	*tab = NULL;
+	return;
+}
 void free_superstrs(char ***strs)
 {
 	int i;
@@ -58,7 +75,7 @@ int free_cub3d(t_cub3d *cub3d)
 	if (cub3d->celling)
 		free(cub3d->celling);
 	if (cub3d->textures)
-		free_superstrs((char ***)&cub3d->textures);
+		free_supertab(&cub3d->textures);
 	if (cub3d->floor)
 		free(cub3d->floor);
 	if (cub3d->east_element)

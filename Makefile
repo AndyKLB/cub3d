@@ -6,7 +6,7 @@ LIBFT_LIB = $(LIBFT_PATH)/libft.a
 MLX_PATH = ./lib/mlx
 MLX_LIB	= $(MLX_PATH)/libmlx.a
 
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 RM = rm -f

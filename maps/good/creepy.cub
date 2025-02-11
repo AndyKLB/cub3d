@@ -1,7 +1,7 @@
-NO srcs/moire.xpm
-EA srcs/moire.xpm
-SO srcs/moire.xpm
-WE srcs/moire.xpm
+NO textures/moire.xpm
+EA textures/moire.xpm
+SO textures/moire.xpm
+WE textures/moire.xpm
 
 C 255,255,255
 F 255,255,255

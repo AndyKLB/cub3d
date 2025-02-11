@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:38:12 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/11 16:09:33 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:37:56 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,20 @@
 // gerer la taille minimal de map.
 // cub3D ou cub3d
 
+
+
+
+
+
+
+
+
+
+
+
+// 12 fevrier
+
 // sujet
+// changer les msg
+// regarder le sujet.
+// tester encore un peu le parse.
