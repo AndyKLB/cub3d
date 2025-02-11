@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 12:57:21 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/06 16:51:36 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 11:00:51 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,3 +101,4 @@ void	raycasting(t_cub3d *cub3d)
 	}
 	ray_loop(cub3d, cub3d->ray, buf);
 }
+

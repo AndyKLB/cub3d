@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:22:34 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/06 16:39:38 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/10 11:28:38 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void init_vectors(t_cub3d *cub3d)
 	int j;
 
 	i = -1;
-	while (cub3d->map->grid[++i])
+	while (cub3d->maps[++i])
 	{
 		j = -1;
-		while (cub3d->map->grid[i][++j])
+		while (cub3d->maps[i][++j])
 		{
-			if (cub3d->map->grid[i][j] == 'N' || cub3d->map->grid[i][j] == 'S' || cub3d->map->grid[i][j] == 'E' || cub3d->map->grid[i][j] == 'W')
-				init_player(i, j, cub3d->map->grid[i][j], cub3d->ray);
+			if (cub3d->maps[i][j] == 'N' || cub3d->maps[i][j] == 'S' || cub3d->maps[i][j] == 'E' || cub3d->maps[i][j] == 'W')
+				init_player(i, j, cub3d->maps[i][j], cub3d->ray);
 		}
 	}
 }

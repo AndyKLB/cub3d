@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:53:24 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/06 16:39:25 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/10 11:36:42 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void init_textures(t_cub3d *cub3d)
 	cub3d->textures = ft_calloc(5, sizeof(int *));
 	if (!cub3d->textures)
 		msg_error(ERR_MALLOC, cub3d);
-	cub3d->textures[NORTH] = get_tex(cub3d, cub3d->map->north_path);
-	cub3d->textures[SOUTH] = get_tex(cub3d, cub3d->map->south_path);
-	cub3d->textures[WEST] = get_tex(cub3d, cub3d->map->west_path);
-	cub3d->textures[EAST] = get_tex(cub3d, cub3d->map->east_path);
+	cub3d->textures[NORTH] = get_tex(cub3d, cub3d->north_element);
+	cub3d->textures[SOUTH] = get_tex(cub3d, cub3d->south_element);
+	cub3d->textures[WEST] = get_tex(cub3d, cub3d->west_element);
+	cub3d->textures[EAST] = get_tex(cub3d, cub3d->east_element);
 }

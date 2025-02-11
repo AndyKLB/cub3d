@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:33:42 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/06 16:59:52 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:51:58 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ void init_map_struct(t_map **map)
 {
 
 	//(*map)->grid = NULL;
-	(*map)->north_path = NULL;
-	(*map)->south_path = NULL;
-	(*map)->east_path = NULL;
-	(*map)->west_path = NULL;
 	(*map)->f_color = NULL;
 	(*map)->c_color = NULL;
 	(*map)->width = 0;
@@ -66,7 +62,7 @@ void init_img_struct(t_img **img)
 	(*img)->img_height = 0;
 }
 
-void init_ray_struct(t_ray **ray)
+void init_ray_struct(t_ray **ray) //le bzero n;est pas effectif
 {
 	ft_bzero((*ray)->pos, 2);
 	ft_bzero((*ray)->ray_dir, 2);
@@ -78,13 +74,16 @@ void init_ray_struct(t_ray **ray)
 	ft_bzero((*ray)->map_pos, 2);
 	ft_bzero((*ray)->step, 2);
 	ft_bzero((*ray)->texture, 2);
-	ft_bzero((*ray)->move, 2);
+	// ft_bzero((*ray)->move, 2);
+	(*ray)->move[0] = 0;
+	(*ray)->move[1] = 0;
 	(*ray)->rotate = 0;
 	(*ray)->moved = 0;
 	(*ray)->line_height = 0;
 	(*ray)->draw_start = 0;
 	(*ray)->draw_end = 0;
 	(*ray)->hit_side = 0;
+	(*ray)->wall_hit = 0;
 	(*ray)->perp_wall_dist = 0;
 	(*ray)->texture_index = 0;
 	(*ray)->wall_hit_x = 0;

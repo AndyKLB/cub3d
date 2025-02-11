@@ -3,7 +3,7 @@
 
 NAME = libft.a
 CC = cc
-FLAGS = -Wall -Wextra -Werror -I.
+FLAGS = -Wall -Wextra -Werror -g3 -I.
 AR = ar
 RM = rm -f
 

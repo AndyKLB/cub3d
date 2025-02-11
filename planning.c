@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:38:12 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/29 11:27:51 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:33:26 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,15 @@
 // 1111111111
 
 // valide ou invalide ?
+
+
+
+
+//all leaks clean.
+// manque a savoir pourquoi la couleur ne s'affiche pas, lien avec buffer ? ou les images de texture en elle meme, mlx_put_to_image.
+
+// makefile -g3
+// les bzero ne sont pas effectif
+
+
+// changer par le code de ali pour voir si cest la partie raycasting qui est fausse.

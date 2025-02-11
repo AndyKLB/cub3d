@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/06 16:50:20 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:03:52 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@
 
 typedef struct s_map
 {
-	char **grid;
-	char *north_path;
-	char *south_path;
-	char *east_path;
-	char *west_path;
 	char *f_color;
 	char *c_color;
 	int width;
@@ -143,7 +138,7 @@ int data_init(t_cub3d *cub3d, t_img *img, t_map *map, t_ray *ray);
 int get_texture(t_cub3d *cub3d, char **tmp_texture);
 void checkmap(t_cub3d *cub3d);
 int ft_isspace(char c);
-int msg_error(char *error, t_cub3d *cub3d);
+void	msg_error(char *msg, t_cub3d *cub3d);
 int check_cardinal_caracters(char *line_map);
 int check_textures_caracters(char *line_map);
 int line_is_fullspace(char *line_map);
@@ -174,5 +169,20 @@ void calculate_initial_side_distances(t_ray *ray);
 void perform_dda(t_cub3d *cub3d, t_ray *ray);
 void render_wall_pixels(t_cub3d *cub3d, t_ray *ray, int x, int **buffer);
 void initialize_wall_draw(t_ray *ray);
+void init_vectors(t_cub3d *cub3d);
+void init_textures(t_cub3d *cub3d);
+void raycasting(t_cub3d *cub3d);
+void initialize_wall_draw(t_ray *ray);
+
+void render_wall_pixels(t_cub3d *cub3d, t_ray *ray, int x, int **buffer);
+void perform_dda(t_cub3d *cub3d, t_ray *ray);
+void calculate_initial_side_distances(t_ray *ray);
+void initialize_ray_direction(t_ray *ray, int x);
+int game_init(t_cub3d *cub3d);
+int handle_key_press(int keycode, t_cub3d *cub3d);
+int handle_key_release(int keycode, t_cub3d *cub3d);
+int movedisplay(t_cub3d *cub3d);
+int moving(t_cub3d *cub3d, t_ray *ray);
+int	free_cub3d(t_cub3d *cub3d);
 
 #endif
