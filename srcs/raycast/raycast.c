@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 12:57:21 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/11 11:00:51 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 14:56:51 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,25 @@ static void	img_addr(t_cub3d *cub3d, int **buffer, int i)
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, img.mlx_img, 0, 0);
 	mlx_destroy_image(cub3d->mlx, img.mlx_img);
 }
+// void printbuffer(int **buf)
+// {
+// 	int i;
+// 	int j;
 
+// 	i = 0;
+// 	j = 0;
+
+// 	while(j < WIN_H)
+// 	{
+// 		while(i < 7)
+// 		{
+// 		printf("buffer = %i\n", buf[j][i]);
+// 		i++;
+// 		}
+// 		i = 0;
+// 		j++;
+// 	}
+// }
 static void	ray_loop(t_cub3d *cub3d, t_ray *ray, int **buf)
 {
 	int	x;
@@ -71,6 +89,7 @@ static void	ray_loop(t_cub3d *cub3d, t_ray *ray, int **buf)
 		render_wall_pixels(cub3d, ray, x, buf);
 		x++;
 	}
+	// printbuffer(buf);
 	img_addr(cub3d, buf, -1);
 	free_pixel_tab(buf);
 }

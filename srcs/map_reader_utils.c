@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:34:31 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/30 15:39:39 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:48:55 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_and_free(char ****map, char ***tmp, int *k, int i)
 	*tmp = NULL;
 }
 
-void	set_map(int i, char ***map)
+void	set_map(int i, char ***map, t_cub3d *cub3d)
 {
 	int		k;
 	char	**tmp;
@@ -52,6 +52,7 @@ void	set_map(int i, char ***map)
 		return ;
 	k = 0;
 	init_and_free(&map, &tmp, &k, i);
+	mapformat(cub3d);
 }
 
 void	set_textures_info(int j, int i, char ***textures_info)

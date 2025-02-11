@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/10 16:03:52 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 14:32:11 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,12 @@
 
 typedef struct s_map
 {
-	char *f_color;
-	char *c_color;
-	int width;
-	int height;
-	int player_x;
-	int player_y;
 	int fcolor_i;
 	int ccolor_i;
 	int f_tab[RGB_SIZE];
 	int c_tab[RGB_SIZE];
+	int width;
+	int height;
 } t_map;
 
 typedef struct s_img
@@ -121,8 +117,6 @@ typedef struct s_cub3d
 	char player_direction;
 	int player_x;
 	int player_y;
-	int win_height;
-	int win_width;
 	void *mlx;
 	int **textures;
 	void *win;
@@ -138,7 +132,7 @@ int data_init(t_cub3d *cub3d, t_img *img, t_map *map, t_ray *ray);
 int get_texture(t_cub3d *cub3d, char **tmp_texture);
 void checkmap(t_cub3d *cub3d);
 int ft_isspace(char c);
-void	msg_error(char *msg, t_cub3d *cub3d);
+void msg_error(char *msg, t_cub3d *cub3d);
 int check_cardinal_caracters(char *line_map);
 int check_textures_caracters(char *line_map);
 int line_is_fullspace(char *line_map);
@@ -153,7 +147,7 @@ int valid_character(char c);
 void print_data(t_cub3d *cub3d, bool restr_aff);
 void get_chararacter_pos(char **map, t_cub3d *cub3d);
 void remove_comma(char *element);
-int check_value(char *floor_or_ceilling);
+int check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d);
 int check_nbr_value(char *floor_or_celling);
 int check_dir_textures(char **dir_path);
 void check_wall(t_cub3d *cub3d);
@@ -163,7 +157,7 @@ void free_elements(char ***tmp_texture, char **buff, t_cub3d *cub3d);
 char **splits_elements(char *buff);
 void separate_map_texture(int *j, int *i, char **map);
 void set_textures_info(int j, int i, char ***textures_info);
-void set_map(int i, char ***map);
+void set_map(int i, char ***map, t_cub3d *cub3d);
 void initialize_ray_direction(t_ray *ray, int x);
 void calculate_initial_side_distances(t_ray *ray);
 void perform_dda(t_cub3d *cub3d, t_ray *ray);
@@ -183,6 +177,7 @@ int handle_key_press(int keycode, t_cub3d *cub3d);
 int handle_key_release(int keycode, t_cub3d *cub3d);
 int movedisplay(t_cub3d *cub3d);
 int moving(t_cub3d *cub3d, t_ray *ray);
-int	free_cub3d(t_cub3d *cub3d);
-
+int free_cub3d(t_cub3d *cub3d);
+void mapformat(t_cub3d *cub3d);
+void init_img_struct(t_img **img);
 #endif

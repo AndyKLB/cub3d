@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:38:12 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/10 16:33:26 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:09:33 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,3 +79,18 @@
 
 
 // changer par le code de ali pour voir si cest la partie raycasting qui est fausse.
+
+
+
+// relire le code lentement pour bien assimile le code, tu dois etre capable de pouvoir corriger une erreur direct, comprendre tout les tenant et aboutissant du code le pourquoi du comment
+
+// finir d'implementer le code.
+// leaks.
+// erreur commune a cherche dans son entourage et dans les commentaires.
+
+
+
+// gerer la taille minimal de map.
+// cub3D ou cub3d
+
+// sujet

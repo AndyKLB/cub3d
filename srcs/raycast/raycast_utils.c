@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:36:02 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/11 11:00:40 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:35:57 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ void render_wall_pixels(t_cub3d *cub3d, t_ray *ray, int x, int **buffer)
 	{
 		ray->texture[Y] = (int)ray->texture_position & (IMG_SIZE - 1);
 		ray->texture_position += ray->texture_step;
-		ray->color = cub3d->textures[(int)ray->texture_position][IMG_SIZE * ray->texture[Y] + ray->texture[X]];
+		ray->color = cub3d->textures[(int)ray->texture_index][IMG_SIZE * ray->texture[Y] + ray->texture[X]];
 		buffer[ray->y][x] = ray->color;
 	}
 }
@@ -222,19 +222,19 @@ void render_wall_pixels(t_cub3d *cub3d, t_ray *ray, int x, int **buffer)
 void perform_dda(t_cub3d *cub3d, t_ray *ray)
 {
 	ray->wall_hit = 0;
-	while (ray->wall_hit) // tant que jai pas touche de mur il avance case par case
+	while (ray->wall_hit == 0) // tant que jai pas touche de mur il avance case par case
 	{
 		if (ray->side_dist[X] < ray->side_dist[Y]) // l'intersection la plus proche c'est verticla ou horizontal
 		{
 			ray->side_dist[X] += ray->delta_dist[X];
 			ray->map_pos[X] += ray->step[X];
-			ray->wall_hit = 0;
+			ray->hit_side = 0;
 		}
 		else
 		{
 			ray->side_dist[Y] += ray->delta_dist[Y];
 			ray->map_pos[Y] += ray->step[Y];
-			ray->wall_hit = 1;
+			ray->hit_side = 1;
 		}
 		if (ray->map_pos[Y] < 0.25 || ray->map_pos[X] < 0.25 || ray->map_pos[Y] > cub3d->map->height - 0.25 || ray->map_pos[X] > cub3d->map->width - 1.25) // protection de sortie.
 			break;

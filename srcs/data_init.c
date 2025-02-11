@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:33:42 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/10 15:51:58 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 14:32:04 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void init_cub3d_struct(t_cub3d **cub3d)
 	(*cub3d)->floor = NULL;
 	(*cub3d)->celling = NULL;
 	(*cub3d)->player_direction = 0;
-	(*cub3d)->player_x = 0;
-	(*cub3d)->player_y = 0;
-	(*cub3d)->win_height = 0;
-	(*cub3d)->win_width = 0;
 	(*cub3d)->textures = NULL;
 	(*cub3d)->mlx = NULL;
 	(*cub3d)->win = NULL;
@@ -35,12 +31,9 @@ void init_map_struct(t_map **map)
 {
 
 	//(*map)->grid = NULL;
-	(*map)->f_color = NULL;
-	(*map)->c_color = NULL;
+
 	(*map)->width = 0;
 	(*map)->height = 0;
-	(*map)->player_x = 0;
-	(*map)->player_y = 0;
 	(*map)->fcolor_i = 0;
 	(*map)->ccolor_i = 0;
 	(*map)->f_tab[0] = -1;
@@ -62,7 +55,7 @@ void init_img_struct(t_img **img)
 	(*img)->img_height = 0;
 }
 
-void init_ray_struct(t_ray **ray) //le bzero n;est pas effectif
+void init_ray_struct(t_ray **ray) // le bzero n;est pas effectif
 {
 	ft_bzero((*ray)->pos, 2);
 	ft_bzero((*ray)->ray_dir, 2);
@@ -103,4 +96,24 @@ int data_init(t_cub3d *cub3d, t_img *img, t_map *map, t_ray *ray)
 	init_img_struct(&img);
 	init_ray_struct(&ray);
 	return (0);
+}
+void mapformat(t_cub3d *cub3d)
+{
+	int j;
+	int i;
+
+	i = 0;
+	j = 0;
+	while (cub3d->maps[j])
+	{
+		while (cub3d->maps[j][i])
+		{
+			i++;
+		}
+		if (cub3d->map->width < i)
+			cub3d->map->width = i;
+		j++;
+		i = 0;
+	}
+	cub3d->map->height = j;
 }

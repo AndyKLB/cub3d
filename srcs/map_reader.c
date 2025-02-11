@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/30 15:37:19 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:52:07 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_map_textures(t_cub3d *cub3d, char *buff)
 	}
 	free(buff);
 	separate_map_texture(&j, &i, cub3d->maps);
-	set_map(i, &cub3d->maps);
+	set_map(i, &cub3d->maps, cub3d);
 	set_textures_info(j, i, &tmp_texture);
 	get_texture(cub3d, tmp_texture);
 	free_strs(tmp_texture);

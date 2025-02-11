@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:53:24 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/10 11:36:42 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:26:00 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ static int *get_tex(t_cub3d *cub3d, char *tex)
 	return (array);
 }
 
+
+int	translate_color(int *rgb)
+{
+	int	color;
+
+	color = (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+	return (color);
+}
 void init_textures(t_cub3d *cub3d)
 {
 	cub3d->textures = ft_calloc(5, sizeof(int *));
@@ -52,4 +60,6 @@ void init_textures(t_cub3d *cub3d)
 	cub3d->textures[SOUTH] = get_tex(cub3d, cub3d->south_element);
 	cub3d->textures[WEST] = get_tex(cub3d, cub3d->west_element);
 	cub3d->textures[EAST] = get_tex(cub3d, cub3d->east_element);
+	cub3d->map->ccolor_i = translate_color(cub3d->map->c_tab);
+	cub3d->map->fcolor_i = translate_color(cub3d->map->f_tab);
 }
