@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:53:24 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/11 12:26:00 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:55:07 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void load_xpm(t_cub3d *cub3d, t_img *img, char *tex)
 	img->mlx_img = mlx_xpm_file_to_image(cub3d->mlx, tex, &img->img_width,
 										 &img->img_height);
 	if (!img->mlx_img)
-		msg_error("texture not found", cub3d);
+		msg_error("ERROR\ntexture not found", cub3d);
 	img->addr = (int *)mlx_get_data_addr(img->mlx_img, &img->bpp,
 										 &img->line_len, &img->endian);
 }

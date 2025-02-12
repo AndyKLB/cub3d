@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:35:19 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/30 14:39:50 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:44:42 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ void	check_wall(t_cub3d *cub3d)
 		while (ft_isspace(cub3d->maps[j][i]))
 			i++;
 		if (cub3d->maps[j][i] != '1')
-			msg_error("first 1\n", cub3d);
+			msg_error("ERROR\nNot beginning by 1\n", cub3d);
 		if (j == 0 || !cub3d->maps[j + 1])
 		{
 			if (surrounded_or_not(cub3d->maps, j, i, 0))
-				msg_error("in first or last only 1 or space\n", cub3d);
+				msg_error("ERROR\nonly 1 or space in the first and last line\n", cub3d);
 		}
 		else if (surrounded_or_not(cub3d->maps, j, i, 1))
-			msg_error("0 not surrounded by wall\n", cub3d);
+			msg_error("ERROR\n0 not surrounded by wall\n", cub3d);
 		i = ft_strlen(cub3d->maps[j]) - 1;
 		if (cub3d->maps[j][i] != '1')
-			msg_error("last 1\n", cub3d);
+			msg_error("ERROR\nNot finishing by 1\n", cub3d);
 		i = 0;
 	}
 }

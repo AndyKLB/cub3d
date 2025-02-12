@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/11 14:32:11 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:55:49 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@
 #define X 0
 #define Y 1
 #define IMG_SIZE 64
-#define ERRDIR "it's a directory"
-#define ERRFD "it's empty"
-#define ERREXT "it's not the good format"
-#define ERRORDR "it's not the good order"
-#define ERRNOMAP "missing map or textures"
-#define ERRTEXT "err init textures"
-#define ERR_MALLOC "malloc failed"
+#define ERRDIR "ERROR\nit's a directory"
+#define ERRFD "ERROR\nit's empty"
+#define ERREXT "ERROR\nit's not the good format"
+#define ERRORDR "ERROR\nit's not the good order"
+#define ERRNOMAP "ERROR\nmissing map or textures"
+#define ERR_MALLOC "ERROR\nmalloc failed"
 #define WIN_W 1280
 #define RGB_SIZE 3
 #define WIN_H 720

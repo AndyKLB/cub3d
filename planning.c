@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:38:12 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/11 16:37:56 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 11:12:06 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,20 @@
 // 12 fevrier
 
 // sujet
-// changer les msg
-// regarder le sujet.
+// changer les msg @@@@@
+// regarder l'eval.
 // tester encore un peu le parse.
+
+
+
+// andy gere le msg d'erreur de texture
+// its not the good order quand je met un mauvais caractere...
+// enlever une virgule a C, ca met le mauvais msg
+// zero leaks.
+
+
+// If any misconfiguration of any kind is encountered in the file, the program
+//must exit properly and return "Error\n" followed by an explicit error message
+//of your choice.
+
+

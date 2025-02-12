@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/11 12:16:14 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:56:20 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ int	get_texture(t_cub3d *cub3d, char **tmp_texture)
 	remove_comma(cub3d->floor);
 	remove_comma(cub3d->celling);
 	if (check_texture_init(cub3d))
-		return (free_strs(tmp_texture), msg_error(ERRTEXT, cub3d), 1);
+		return (free_strs(tmp_texture), msg_error("Error\n textures", cub3d), 1); // andy
 	return (0);
 }

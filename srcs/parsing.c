@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/01/30 14:59:38 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:59:55 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	checkmap(t_cub3d *cub3d)
 	if (!cub3d->maps)
 		msg_error(ERRNOMAP, cub3d);
 	if (find(cub3d->maps))
-		msg_error("find", cub3d);
+		msg_error("ERROR\nunknown character detected", cub3d);
 	if (countplayer(cub3d->maps) != 1)
-		msg_error("countplayer", cub3d);
+		msg_error("ERROR\nnumber of player != 1", cub3d);
 	check_wall(cub3d);
 	fill_space_one(cub3d->maps);
 }

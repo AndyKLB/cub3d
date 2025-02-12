@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:37:09 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/10 15:45:59 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:45:38 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int game_init(t_cub3d *cub3d)
 {
 	cub3d->mlx = mlx_init();
 	if (!cub3d->mlx)
-		msg_error("mlxinit", cub3d);
+		msg_error("ERROR\nmlx_init failed", cub3d);
 	cub3d->win = mlx_new_window(cub3d->mlx, WIN_W, WIN_H, "cub3d");
 	if (!cub3d->win)
-		msg_error("mlxwin", cub3d);
+		msg_error("ERROR\nnew windows failed", cub3d);
 
 	return (0);
 }
