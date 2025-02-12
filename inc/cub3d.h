@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 15:17:05 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:21:02 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@
 # define ERRORUNKNOWN "ERROR\nunknown character detected"
 # define ERRPLAYER "ERROR\nnumber of player != 1"
 # define ERRSMALL "ERROR\nMap are too biggysmall"
+# define ERRRANGE "ERROR\ninvalid RGB range"
 # define WIN_W 1280
 # define RGB_SIZE 3
 # define WIN_H 720
@@ -128,6 +129,7 @@ typedef struct s_cub3d
 	int		player_x;
 	int		player_y;
 	int		coltex;
+	int		outrange;
 	void	*mlx;
 	int		**textures;
 	void	*win;
@@ -160,7 +162,8 @@ void		get_chararacter_pos(char **map, t_cub3d *cub3d);
 void		remove_comma(char *element);
 int			check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d);
 int			check_nbr_value(char *floor_or_celling);
-int			check_dir_textures(char **dir_path, t_cub3d *cub3d);
+int			check_dir_textures(char **dir_path, t_cub3d *cub3d,
+				char **tmp_texture);
 void		check_wall(t_cub3d *cub3d);
 int			countplayer(char **map);
 int			find(char **map);
@@ -191,12 +194,9 @@ int			moving(t_cub3d *cub3d, t_ray *ray);
 int			free_cub3d(t_cub3d *cub3d);
 void		mapformat(t_cub3d *cub3d);
 void		init_img_struct(t_img **img);
-void	init_cub3d_struct(t_cub3d **cub3d);
-void	init_map_struct(t_map **map);
-void	init_ray_struct(t_ray **ray);
-int	can_move(t_cub3d *cub3d, t_ray *ray, double x, double y);
-
-
-
+void		init_cub3d_struct(t_cub3d **cub3d);
+void		init_map_struct(t_map **map);
+void		init_ray_struct(t_ray **ray);
+int			can_move(t_cub3d *cub3d, t_ray *ray, double x, double y);
 
 #endif

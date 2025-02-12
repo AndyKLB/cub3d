@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures_utils1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:19:37 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 13:41:22 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:19:11 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,20 @@ int	check_nbr_value(char *floor_or_celling)
 	int	i;
 	int	nb_spc;
 	int	is_not_digit;
-	int	is_digit;
 
-	is_digit = 1;
 	is_not_digit = 0;
 	nb_spc = 0;
 	i = 0;
 	while (floor_or_celling[i])
 	{
 		if (!ft_isdigit(floor_or_celling[i])
-			&& !ft_isspace(floor_or_celling[i]))
+			&& !ft_isspace(floor_or_celling[i]) && floor_or_celling[i] != '-')
 			is_not_digit++;
 		if (floor_or_celling[i] == ' ')
-		{
 			nb_spc++;
-			if (ft_isdigit(floor_or_celling[i + 1]))
-				is_digit++;
-		}
 		i++;
 	}
-	if (nb_spc != 2 || is_not_digit || is_digit != 3)
+	if (nb_spc != 2 || is_not_digit)
 		return (1);
 	return (0);
 }
@@ -67,8 +61,8 @@ int	check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d)
 			cub3d->map->f_tab[k] = ft_atoi(value);
 		else
 			cub3d->map->c_tab[k] = ft_atoi(value);
-		if (ft_atoi(value) > 255)
-			return (free(value), 1);
+		if (ft_atoi(value) > 255 || ft_atoi(value) > 0)
+			return (cub3d->outrange = 1, free(value), 1);
 		free(value);
 		k++;
 	}

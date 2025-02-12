@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:19:34 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 14:43:59 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:52:14 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	go_to_end(int *i, char *dir_path, char c)
 		(*i)--;
 }
 
-int	check_dir_textures(char **dir_path, t_cub3d *cub3d)
+int	check_dir_textures(char **dir_path, t_cub3d *cub3d, char **tmp_texture)
 {
 	DIR		*dir;
 	int		i;
@@ -42,8 +42,8 @@ int	check_dir_textures(char **dir_path, t_cub3d *cub3d)
 	i = 0;
 	go_to_end(&i, *dir_path, '.');
 	if (ft_strictcmp((*dir_path + i), ".xpm"))
-		return (msg_error(ERRINVTEX, cub3d), 1);
+		return (free_superstrs(&tmp_texture) ,msg_error(ERRINVTEX, cub3d), 1);
 	if (access(*dir_path, R_OK))
-		return (msg_error(ERRFORB, cub3d), 1);
+		return (free_superstrs(&tmp_texture) ,msg_error(ERRFORB, cub3d), 1);
 	return (0);
 }
