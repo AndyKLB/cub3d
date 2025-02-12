@@ -6,7 +6,7 @@
 /*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/30 14:51:56 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:46:09 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,30 +66,74 @@ int	line_is_spcnews(char *line_map)
 	return (0);
 }
 
-int	check_elements_order(t_cub3d *cub3d)
+
+int	count_coltex(char **map)
+{
+	int	j;
+	int	coltex;
+
+	j = 0;
+	coltex = 0;
+	while (map[j])
+	{
+		if ((check_cardinal_caracters(map[j])
+				|| check_textures_caracters(map[j])
+				|| line_is_fullspace(map[j])) && map[j])
+			coltex++;
+		j++;
+	}
+	return (coltex);
+}
+
+int	map_is_absent(char **map, int coltex, int *j)
 {
 	int	i;
+	int	k;
+
+	k = 0;
+	i = 0;
+	while ((check_cardinal_caracters(map[i]) || check_textures_caracters(map[i])
+			|| line_is_fullspace(map[i])) && map[i])
+	{
+		if (!line_is_fullspace(map[i]) && map[i])
+			k++;
+		i++;
+		(*j) = k;
+		if (!map[i])
+		{
+			if (coltex < 6)
+				return (1);
+			else if (coltex > 6)
+				return (3);
+			return (2);
+		}
+	}
+	return (0);
+}
+
+int	check_elements_order(t_cub3d *cub3d)
+{
 	int	j;
 
 	j = 0;
-	i = 0;
-	while ((check_cardinal_caracters(cub3d->maps[i])
-			|| check_textures_caracters(cub3d->maps[i])
-			|| line_is_fullspace(cub3d->maps[i])) && cub3d->maps[i])
+	cub3d->coltex = count_coltex(cub3d->maps);
+	if (map_is_absent(cub3d->maps, cub3d->coltex, &j) == 1)
+		return (ft_printf_fd(2, "%s\n%s\n", ERRCOLTEX, ERRNOMAP), 1);
+	else if (map_is_absent(cub3d->maps, cub3d->coltex, &j) == 2)
+		return (ft_printf_fd(2, "%s\n", ERRNOMAP), 1);
+	while (cub3d->maps[j])
 	{
-		if (!line_is_fullspace(cub3d->maps[i]) && cub3d->maps[i])
-			j++;
-		i++;
-		if (!cub3d->maps[i])
-			return (ft_printf_fd(2, "%s\n", ERRNOMAP), 2);
-	}
-	if (j != 6)
-		return (ft_printf_fd(2, "%s\n", ERRNOMAP), 2);
-	while (cub3d->maps[i])
-	{
-		if (!line_is_spcnews(cub3d->maps[i]))
+		if (line_is_spcnews(cub3d->maps[j]) && (cub3d->maps[j + 1]
+				&& (check_cardinal_caracters(cub3d->maps[j + 1])
+					|| check_textures_caracters(cub3d->maps[j + 1]))))
+		{
+			if (cub3d->coltex != 6)
+				return (ft_printf_fd(2, "%s\n%s", ERRORDR, ERRCOLTEX), 1);
 			return (ft_printf_fd(2, "%s\n", ERRORDR), 1);
-		i++;
+		}
+		if (!line_is_spcnews(cub3d->maps[j]))
+			return (ft_printf_fd(2, "%s\n", ERRUKNOW), 1);
+		j++;
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 14:01:52 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:01:40 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,12 @@
 # define ERREXT "ERROR\nit's not the good format"
 # define ERRORDR "ERROR\nit's not the good order"
 # define ERRNOMAP "ERROR\nmissing map or textures"
+# define ERRCOLTEX "ERROR\nmissing color or texture"
+# define ERRUKNOW "ERROR\nunknown character detected"
+# define ERRINVTEX "ERROR\ninvalid texture"
+# define ERRDUPTEX "ERROR\nduplicate texture"
+# define ERRFORB "ERROR\ninvalid access"
 # define ERR_MALLOC "ERROR\nmalloc failed"
-# define ERRONLY "ERROR\nonly 1 or space in the first and last line\n"
-# define FIRSTONE "ERROR\nNot beginning by 1\n"
-# define ERRWALL "ERROR\n0 not surrounded by wall\n"
-# define FINALONE "ERROR\nNot finishing by 1\n"
-# define ERRORUNKNOWN "ERROR\nunknown character detected"
-# define ERRPLAYER "ERROR\nnumber of player != 1"
-# define ERRSMALL "ERROR\nMap are too biggysmall"
-
 # define WIN_W 1280
 # define RGB_SIZE 3
 # define WIN_H 720
@@ -124,6 +121,7 @@ typedef struct s_cub3d
 	char	player_direction;
 	int		player_x;
 	int		player_y;
+	int		coltex;
 	void	*mlx;
 	int		**textures;
 	void	*win;
@@ -146,6 +144,7 @@ int			line_is_fullspace(char *line_map);
 void		fill_space_one(char **map);
 int			checkformat(t_cub3d *cub3d, char *path);
 void		free_superstrs(char ***strs);
+void		free_strs(char **strs);
 void		map_reader(t_cub3d *cub3d, char *path);
 int			is_news(char c);
 int			is_character(char c);
@@ -155,7 +154,7 @@ void		get_chararacter_pos(char **map, t_cub3d *cub3d);
 void		remove_comma(char *element);
 int			check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d);
 int			check_nbr_value(char *floor_or_celling);
-int			check_dir_textures(char **dir_path);
+int			check_dir_textures(char **dir_path, t_cub3d *cub3d);
 void		check_wall(t_cub3d *cub3d);
 int			countplayer(char **map);
 int			find(char **map);
@@ -173,6 +172,7 @@ void		init_vectors(t_cub3d *cub3d);
 void		init_textures(t_cub3d *cub3d);
 void		raycasting(t_cub3d *cub3d);
 void		initialize_wall_draw(t_ray *ray);
+
 void		render_wall_pixels(t_cub3d *cub3d, t_ray *ray, int x, int **buffer);
 void		perform_dda(t_cub3d *cub3d, t_ray *ray);
 void		calculate_initial_side_distances(t_ray *ray);
@@ -185,9 +185,4 @@ int			moving(t_cub3d *cub3d, t_ray *ray);
 int			free_cub3d(t_cub3d *cub3d);
 void		mapformat(t_cub3d *cub3d);
 void		init_img_struct(t_img **img);
-void		init_ray_struct(t_ray **ray);
-void		init_map_struct(t_map **map);
-void		init_cub3d_struct(t_cub3d **cub3d);
-int			can_move(t_cub3d *cub3d, t_ray *ray, double x, double y);
-
 #endif
