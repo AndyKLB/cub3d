@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:35:19 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 10:44:42 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 14:10:19 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ void	check_wall(t_cub3d *cub3d)
 		while (ft_isspace(cub3d->maps[j][i]))
 			i++;
 		if (cub3d->maps[j][i] != '1')
-			msg_error("ERROR\nNot beginning by 1\n", cub3d);
+			msg_error(FIRSTONE, cub3d);
 		if (j == 0 || !cub3d->maps[j + 1])
 		{
 			if (surrounded_or_not(cub3d->maps, j, i, 0))
-				msg_error("ERROR\nonly 1 or space in the first and last line\n", cub3d);
+				msg_error(ERRONLY, cub3d);
 		}
 		else if (surrounded_or_not(cub3d->maps, j, i, 1))
-			msg_error("ERROR\n0 not surrounded by wall\n", cub3d);
+			msg_error(ERRWALL, cub3d);
 		i = ft_strlen(cub3d->maps[j]) - 1;
 		if (cub3d->maps[j][i] != '1')
-			msg_error("ERROR\nNot finishing by 1\n", cub3d);
+			msg_error(FINALONE, cub3d);
 		i = 0;
 	}
 }
@@ -112,4 +112,27 @@ int	countplayer(char **map)
 		i = 0;
 	}
 	return (count);
+}
+
+void	mapformat(t_cub3d *cub3d)
+{
+	int	j;
+	int	i;
+
+	i = 0;
+	j = 0;
+	while (cub3d->maps[j])
+	{
+		while (cub3d->maps[j][i])
+		{
+			i++;
+		}
+		if (cub3d->map->width < i)
+			cub3d->map->width = i;
+		j++;
+		i = 0;
+	}
+	cub3d->map->height = j;
+	if (cub3d->map->width < 3 || cub3d->map->height < 3)
+		return (msg_error(ERRSMALL, cub3d));
 }

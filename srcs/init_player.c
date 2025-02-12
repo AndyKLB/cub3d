@@ -6,13 +6,13 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:22:34 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/10 11:28:38 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:28:46 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void init_plane(t_ray *ray, char c)
+static void	init_plane(t_ray *ray, char c)
 {
 	if (c == 'S')
 	{
@@ -36,7 +36,7 @@ static void init_plane(t_ray *ray, char c)
 	}
 }
 
-static void init_player(int y, int x, char c, t_ray *ray)
+static void	init_player(int y, int x, char c, t_ray *ray)
 {
 	ray->pos[0] = (double)x + 0.5;
 	ray->pos[1] = (double)y + 0.5;
@@ -63,10 +63,10 @@ static void init_player(int y, int x, char c, t_ray *ray)
 	init_plane(ray, c);
 }
 
-void init_vectors(t_cub3d *cub3d)
+void	init_vectors(t_cub3d *cub3d)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (cub3d->maps[++i])
@@ -74,7 +74,8 @@ void init_vectors(t_cub3d *cub3d)
 		j = -1;
 		while (cub3d->maps[i][++j])
 		{
-			if (cub3d->maps[i][j] == 'N' || cub3d->maps[i][j] == 'S' || cub3d->maps[i][j] == 'E' || cub3d->maps[i][j] == 'W')
+			if (cub3d->maps[i][j] == 'N' || cub3d->maps[i][j] == 'S'
+				|| cub3d->maps[i][j] == 'E' || cub3d->maps[i][j] == 'W')
 				init_player(i, j, cub3d->maps[i][j], cub3d->ray);
 		}
 	}

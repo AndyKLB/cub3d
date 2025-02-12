@@ -6,18 +6,18 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:19:37 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/11 12:47:50 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:41:22 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int check_nbr_value(char *floor_or_celling)
+int	check_nbr_value(char *floor_or_celling)
 {
-	int i;
-	int nb_spc;
-	int is_not_digit;
-	int is_digit;
+	int	i;
+	int	nb_spc;
+	int	is_not_digit;
+	int	is_digit;
 
 	is_digit = 1;
 	is_not_digit = 0;
@@ -25,7 +25,8 @@ int check_nbr_value(char *floor_or_celling)
 	i = 0;
 	while (floor_or_celling[i])
 	{
-		if (!ft_isdigit(floor_or_celling[i]) && !ft_isspace(floor_or_celling[i]))
+		if (!ft_isdigit(floor_or_celling[i])
+			&& !ft_isspace(floor_or_celling[i]))
 			is_not_digit++;
 		if (floor_or_celling[i] == ' ')
 		{
@@ -40,12 +41,12 @@ int check_nbr_value(char *floor_or_celling)
 	return (0);
 }
 
-int check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d)
+int	check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d)
 {
-	int i;
-	int j;
-	char *value;
-	int k;
+	int		i;
+	int		j;
+	char	*value;
+	int		k;
 
 	value = 0;
 	i = 0;
@@ -62,7 +63,6 @@ int check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d)
 			j++;
 		value = ft_substr(floor_or_ceilling, i, (j - i));
 		i = j;
-
 		if (floor)
 			cub3d->map->f_tab[k] = ft_atoi(value);
 		else
@@ -75,13 +75,13 @@ int check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d)
 	return (0);
 }
 
-void remove_comma(char *element)
+void	remove_comma(char *element)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!element)
-		return;
+		return ;
 	while (element[i])
 	{
 		if (element[i] == ',')
@@ -90,17 +90,17 @@ void remove_comma(char *element)
 	}
 }
 
-void set_position(int x, int y, char direction, t_cub3d *cub3d)
+void	set_position(int x, int y, char direction, t_cub3d *cub3d)
 {
 	cub3d->player_x = x;
 	cub3d->player_y = y;
 	cub3d->player_direction = direction;
 }
 
-void get_chararacter_pos(char **map, t_cub3d *cub3d)
+void	get_chararacter_pos(char **map, t_cub3d *cub3d)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map[i])

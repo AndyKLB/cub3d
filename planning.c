@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:38:12 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 11:12:06 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 11:53:16 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@
 // its not the good order quand je met un mauvais caractere...
 // enlever une virgule a C, ca met le mauvais msg
 // zero leaks.
+// les message s'affiche avec un espace.
 
 
 // If any misconfiguration of any kind is encountered in the file, the program

@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/11 13:52:07 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:37:16 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_map_textures(t_cub3d *cub3d, char *buff)
 	if (!tmp_texture)
 	{
 		free(buff);
-		free_strs(cub3d->maps);
+		free_superstrs(&cub3d->maps);
 		return ;
 	}
 	free(buff);
@@ -38,7 +38,7 @@ void	init_map_textures(t_cub3d *cub3d, char *buff)
 	set_map(i, &cub3d->maps, cub3d);
 	set_textures_info(j, i, &tmp_texture);
 	get_texture(cub3d, tmp_texture);
-	free_strs(tmp_texture);
+	free_superstrs(&tmp_texture);
 }
 
 void	map_reader(t_cub3d *cub3d, char *path)

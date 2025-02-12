@@ -6,27 +6,28 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:53:24 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 10:55:07 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:30:18 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-static void load_xpm(t_cub3d *cub3d, t_img *img, char *tex)
+
+static void	load_xpm(t_cub3d *cub3d, t_img *img, char *tex)
 {
 	img->mlx_img = mlx_xpm_file_to_image(cub3d->mlx, tex, &img->img_width,
-										 &img->img_height);
+			&img->img_height);
 	if (!img->mlx_img)
 		msg_error("ERROR\ntexture not found", cub3d);
 	img->addr = (int *)mlx_get_data_addr(img->mlx_img, &img->bpp,
-										 &img->line_len, &img->endian);
+			&img->line_len, &img->endian);
 }
 
-static int *get_tex(t_cub3d *cub3d, char *tex)
+static int	*get_tex(t_cub3d *cub3d, char *tex)
 {
-	t_img tmp;
-	int *array;
-	int x;
-	int y;
+	t_img	tmp;
+	int		*array;
+	int		x;
+	int		y;
 
 	load_xpm(cub3d, &tmp, tex);
 	array = ft_calloc(1, sizeof(int) * (IMG_SIZE * IMG_SIZE));
@@ -43,7 +44,6 @@ static int *get_tex(t_cub3d *cub3d, char *tex)
 	return (array);
 }
 
-
 int	translate_color(int *rgb)
 {
 	int	color;
@@ -51,7 +51,8 @@ int	translate_color(int *rgb)
 	color = (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 	return (color);
 }
-void init_textures(t_cub3d *cub3d)
+
+void	init_textures(t_cub3d *cub3d)
 {
 	cub3d->textures = ft_calloc(5, sizeof(int *));
 	if (!cub3d->textures)

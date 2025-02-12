@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 10:59:55 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:57:30 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	checkmap(t_cub3d *cub3d)
 	if (!cub3d->maps)
 		msg_error(ERRNOMAP, cub3d);
 	if (find(cub3d->maps))
-		msg_error("ERROR\nunknown character detected", cub3d);
+		msg_error(ERRORUNKNOWN, cub3d);
 	if (countplayer(cub3d->maps) != 1)
-		msg_error("ERROR\nnumber of player != 1", cub3d);
+		msg_error(ERRPLAYER, cub3d);
 	check_wall(cub3d);
 	fill_space_one(cub3d->maps);
 }

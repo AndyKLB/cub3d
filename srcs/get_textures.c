@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 10:56:20 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:41:08 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	get_wall_texture(char *wall_texture, t_cub3d *cub3d)
 	i = 0;
 	while (ft_isspace(wall_texture[i]))
 		i++;
-	if ((wall_texture[i] == 'N' || wall_texture[i] == 'S') && wall_texture[i
-			+ 1] == 'O')
+	if ((wall_texture[i] == 'N' || wall_texture[i] == 'S')
+		&& wall_texture[i + 1] == 'O')
 	{
 		if (wall_texture[i] == 'N')
 			return (copy_element((wall_texture + i + 2), &cub3d->north_element),
@@ -103,6 +103,7 @@ int	get_texture(t_cub3d *cub3d, char **tmp_texture)
 	remove_comma(cub3d->floor);
 	remove_comma(cub3d->celling);
 	if (check_texture_init(cub3d))
-		return (free_strs(tmp_texture), msg_error("Error\n textures", cub3d), 1); // andy
+		return (free_superstrs(&tmp_texture), msg_error("Error\n textures",
+				cub3d), 1);
 	return (0);
 }
