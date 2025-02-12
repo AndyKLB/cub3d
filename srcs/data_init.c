@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:33:42 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/11 14:32:04 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 14:27:48 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void init_cub3d_struct(t_cub3d **cub3d)
 	(*cub3d)->textures = NULL;
 	(*cub3d)->mlx = NULL;
 	(*cub3d)->win = NULL;
+	(*cub3d)->coltex = 0;
 }
 
 void init_map_struct(t_map **map)
