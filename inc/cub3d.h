@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 16:21:02 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:25:57 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define FINALONE "ERROR\nNot finishing by 1\n"
 # define ERRORUNKNOWN "ERROR\nunknown character detected"
 # define ERRPLAYER "ERROR\nnumber of player != 1"
-# define ERRSMALL "ERROR\nMap are too biggysmall"
+# define ERRSMALL "ERROR\nMap are too (biggy)small"
 # define ERRRANGE "ERROR\ninvalid RGB range"
 # define WIN_W 1280
 # define RGB_SIZE 3

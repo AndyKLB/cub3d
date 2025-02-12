@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 16:20:20 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:47:48 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	check_texture_init(t_cub3d *cub3d, char **tmp_texture)
 		return (1);
 	if (!cub3d->celling || check_nbr_value(cub3d->celling)
 		|| check_value(cub3d->celling, 0, cub3d))
-		return (1);
+		return (printf("=== %d", cub3d->outrange), 1);
 	return (0);
 }
 

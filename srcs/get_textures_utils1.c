@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures_utils1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:19:37 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 16:19:11 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:49:10 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ int	check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d)
 	{
 		while (ft_isspace(floor_or_ceilling[i]))
 			i++;
-		while (!ft_isdigit(floor_or_ceilling[i]))
+		while (!ft_isdigit(floor_or_ceilling[i]) && floor_or_ceilling[i] != '-')
 			i++;
 		j = i;
-		while (ft_isdigit(floor_or_ceilling[j]))
+		while (ft_isdigit(floor_or_ceilling[j]) || floor_or_ceilling[j] == '-')
 			j++;
 		value = ft_substr(floor_or_ceilling, i, (j - i));
 		i = j;
+		if (ft_atoi(value) > 255 || ft_atoi(value) < 0)
+			return (cub3d->outrange = 1, free(value), 1);
 		if (floor)
 			cub3d->map->f_tab[k] = ft_atoi(value);
 		else
 			cub3d->map->c_tab[k] = ft_atoi(value);
-		if (ft_atoi(value) > 255 || ft_atoi(value) > 0)
-			return (cub3d->outrange = 1, free(value), 1);
 		free(value);
 		k++;
 	}
