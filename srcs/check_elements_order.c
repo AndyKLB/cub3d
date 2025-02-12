@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements_order.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 14:46:09 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:13:24 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	check_elements_order(t_cub3d *cub3d)
 			return (ft_printf_fd(2, "%s\n", ERRORDR), 1);
 		}
 		if (!line_is_spcnews(cub3d->maps[j]))
-			return (ft_printf_fd(2, "%s\n", ERRUKNOW), 1);
+			return (ft_printf_fd(2, "%s\n", ERRORUNKNOWN), 1);
 		j++;
 	}
 	return (0);

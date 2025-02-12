@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 15:01:40 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:14:13 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,17 @@
 # define ERRORDR "ERROR\nit's not the good order"
 # define ERRNOMAP "ERROR\nmissing map or textures"
 # define ERRCOLTEX "ERROR\nmissing color or texture"
-# define ERRUKNOW "ERROR\nunknown character detected"
 # define ERRINVTEX "ERROR\ninvalid texture"
 # define ERRDUPTEX "ERROR\nduplicate texture"
 # define ERRFORB "ERROR\ninvalid access"
 # define ERR_MALLOC "ERROR\nmalloc failed"
+# define ERRONLY "ERROR\nonly 1 or space in the first and last line\n"
+# define FIRSTONE "ERROR\nNot beginning by 1\n"
+# define ERRWALL "ERROR\n0 not surrounded by wall\n"
+# define FINALONE "ERROR\nNot finishing by 1\n"
+# define ERRORUNKNOWN "ERROR\nunknown character detected"
+# define ERRPLAYER "ERROR\nnumber of player != 1"
+# define ERRSMALL "ERROR\nMap are too biggysmall"
 # define WIN_W 1280
 # define RGB_SIZE 3
 # define WIN_H 720
@@ -185,4 +191,10 @@ int			moving(t_cub3d *cub3d, t_ray *ray);
 int			free_cub3d(t_cub3d *cub3d);
 void		mapformat(t_cub3d *cub3d);
 void		init_img_struct(t_img **img);
+void	init_cub3d_struct(t_cub3d **cub3d);
+void	init_map_struct(t_map **map);
+void	init_ray_struct(t_ray **ray);
+
+
+
 #endif

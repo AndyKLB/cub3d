@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 15:07:00 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:14:25 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	get_texture(t_cub3d *cub3d, char **tmp_texture)
 	{
 		if (cub3d->coltex > 6)
 			return (free_superstrs(&tmp_texture), msg_error(ERRDUPTEX, cub3d), 1);
-		return (free_supetstrs(&tmp_texture), msg_error(ERRCOLTEX, cub3d), 1);
+		return (free_superstrs(&tmp_texture), msg_error(ERRCOLTEX, cub3d), 1);
 	}
 	return (0);
 }
