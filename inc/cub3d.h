@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 15:14:13 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:17:05 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,8 @@ void		init_img_struct(t_img **img);
 void	init_cub3d_struct(t_cub3d **cub3d);
 void	init_map_struct(t_map **map);
 void	init_ray_struct(t_ray **ray);
+int	can_move(t_cub3d *cub3d, t_ray *ray, double x, double y);
+
 
 
 

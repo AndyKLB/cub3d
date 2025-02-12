@@ -17,7 +17,7 @@ MLX_FLAG = -lX11 -lXext -lm
 ## SOURCES
 SRCS_FILES = parsing.c cub3d.c check_elements_order.c data_init.c free.c map_reader.c \
 			 utils.c get_textures.c get_textures_utils1.c get_textures_utils2.c game_init.c \
-			 print_data.c parsing_utils.c map_reader_utils.c init_textures.c init_player.c movv.c data_init_utils.c\
+			 parsing_utils.c map_reader_utils.c init_textures.c init_player.c movv.c data_init_utils.c\
 
 RAY_FILES = raycast_utils.c raycast.c
 
