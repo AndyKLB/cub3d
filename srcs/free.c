@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:47:03 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 13:37:39 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/13 11:13:38 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_superstrs(char ***strs)
 	int	i;
 
 	i = 0;
-	if (!*strs || !**strs)
+	if (!*strs)
 		return ;
 	while ((*strs)[i])
 	{

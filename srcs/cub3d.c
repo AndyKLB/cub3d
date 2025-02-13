@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:14:57 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 13:33:59 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/13 14:43:48 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ int	main(int argc, char **argv)
 	t_map	map;
 	t_img	img;
 	t_ray	ray;
+	t_utils	utils;
 
 	if (argc == 2)
 	{
 		if (data_init(&cub3d, &img, &map, &ray))
 			return (1);
-		checkformat(&cub3d, argv[1]);
+		checkformat(&cub3d, argv[1], &utils);
 		map_reader(&cub3d, argv[1]);
 		checkmap(&cub3d);
 		game_init(&cub3d);

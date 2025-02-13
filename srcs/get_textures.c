@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 16:47:48 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/13 14:35:27 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	get_wall_texture(char *wall_texture, t_cub3d *cub3d)
 	i = 0;
 	while (ft_isspace(wall_texture[i]))
 		i++;
-	if ((wall_texture[i] == 'N' || wall_texture[i] == 'S') && wall_texture[i
-		+ 1] == 'O')
+	if ((wall_texture[i] == 'N' || wall_texture[i] == 'S')
+		&& wall_texture[i + 1] == 'O')
 	{
 		if (wall_texture[i] == 'N')
 			return (copy_element((wall_texture + i + 2), &cub3d->north_element),
@@ -84,11 +84,11 @@ int	check_texture_init(t_cub3d *cub3d, char **tmp_texture)
 			tmp_texture))
 		return (1);
 	if (!cub3d->floor || check_nbr_value(cub3d->floor)
-		|| check_value(cub3d->floor, 1, cub3d))
+		|| check_value(cub3d->floor, 1, cub3d, cub3d->utils))
 		return (1);
 	if (!cub3d->celling || check_nbr_value(cub3d->celling)
-		|| check_value(cub3d->celling, 0, cub3d))
-		return (printf("=== %d", cub3d->outrange), 1);
+		|| check_value(cub3d->celling, 0, cub3d, cub3d->utils))
+		return (1);
 	return (0);
 }
 

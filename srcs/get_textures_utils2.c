@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures_utils2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:19:34 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 15:52:14 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:17:21 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	check_dir_textures(char **dir_path, t_cub3d *cub3d, char **tmp_texture)
 	i = 0;
 	go_to_end(&i, *dir_path, '.');
 	if (ft_strictcmp((*dir_path + i), ".xpm"))
-		return (free_superstrs(&tmp_texture) ,msg_error(ERRINVTEX, cub3d), 1);
+		return (free_superstrs(&tmp_texture), msg_error(ERRINVTEX, cub3d), 1);
 	if (access(*dir_path, R_OK))
-		return (free_superstrs(&tmp_texture) ,msg_error(ERRFORB, cub3d), 1);
+		return (free_superstrs(&tmp_texture), msg_error(ERRFORB, cub3d), 1);
 	return (0);
 }

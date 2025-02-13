@@ -6,17 +6,28 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 13:57:30 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/13 14:40:31 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	checkformat(t_cub3d *cub3d, char *path)
+void	init_utils_struct(t_cub3d *cub3d, t_utils *utils)
+{
+	cub3d->utils = utils;
+	utils->i = 0;
+	utils->j = 0;
+	utils->value = NULL;
+	utils->k = 0;
+	utils->l = 0;
+}
+
+int	checkformat(t_cub3d *cub3d, char *path, t_utils *utils)
 {
 	int	len;
 	int	fd;
 
+	init_utils_struct(cub3d, utils);
 	len = ft_strlen(path);
 	if (open(path, __O_DIRECTORY) >= 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:19:37 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 16:49:10 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/13 14:43:38 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	check_nbr_value(char *floor_or_celling)
 	i = 0;
 	while (floor_or_celling[i])
 	{
-		if (!ft_isdigit(floor_or_celling[i])
-			&& !ft_isspace(floor_or_celling[i]) && floor_or_celling[i] != '-')
+		if (!ft_isdigit(floor_or_celling[i]) && !ft_isspace(floor_or_celling[i])
+			&& floor_or_celling[i] != '-')
 			is_not_digit++;
-		if (floor_or_celling[i] == ' ')
+		if (floor_or_celling[i] == ' ' && floor_or_celling[i + 1])
 			nb_spc++;
 		i++;
 	}
@@ -35,36 +35,31 @@ int	check_nbr_value(char *floor_or_celling)
 	return (0);
 }
 
-int	check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d)
+int	check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d, t_utils *u)
 {
-	int		i;
-	int		j;
-	char	*value;
-	int		k;
-
-	value = 0;
-	i = 0;
-	j = 0;
-	k = 0;
-	while (floor_or_ceilling[i])
+	while (floor_or_ceilling[u->i])
 	{
-		while (ft_isspace(floor_or_ceilling[i]))
-			i++;
-		while (!ft_isdigit(floor_or_ceilling[i]) && floor_or_ceilling[i] != '-')
-			i++;
-		j = i;
-		while (ft_isdigit(floor_or_ceilling[j]) || floor_or_ceilling[j] == '-')
-			j++;
-		value = ft_substr(floor_or_ceilling, i, (j - i));
-		i = j;
-		if (ft_atoi(value) > 255 || ft_atoi(value) < 0)
-			return (cub3d->outrange = 1, free(value), 1);
+		while (ft_isspace(floor_or_ceilling[u->i]) && floor_or_ceilling[u->i])
+			u->i++;
+		u->j = u->i;
+		while (!ft_isspace(floor_or_ceilling[u->j]) && floor_or_ceilling[u->j])
+			u->j++;
+		u->value = ft_substr(floor_or_ceilling, u->i, (u->j - u->i));
+		while (u->value[++(u->l)])
+		{
+			if (!ft_isdigit(u->value[u->l]))
+				return (free(u->value), 1);
+		}
+		u->l = 0;
+		u->i = u->j;
+		if (ft_atoi(u->value) > 255 || ft_atoi(u->value) < 0)
+			return (cub3d->outrange = 1, free(u->value), 1);
 		if (floor)
-			cub3d->map->f_tab[k] = ft_atoi(value);
+			cub3d->map->f_tab[u->k] = ft_atoi(u->value);
 		else
-			cub3d->map->c_tab[k] = ft_atoi(value);
-		free(value);
-		k++;
+			cub3d->map->c_tab[u->k] = ft_atoi(u->value);
+		free(u->value);
+		u->k++;
 	}
 	return (0);
 }

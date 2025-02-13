@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 16:25:57 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/13 14:44:03 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@
 # define ERRDUPTEX "ERROR\nduplicate texture"
 # define ERRFORB "ERROR\ninvalid access"
 # define ERR_MALLOC "ERROR\nmalloc failed"
-# define ERRONLY "ERROR\nonly 1 or space in the first and last line\n"
-# define FIRSTONE "ERROR\nNot beginning by 1\n"
-# define ERRWALL "ERROR\n0 not surrounded by wall\n"
-# define FINALONE "ERROR\nNot finishing by 1\n"
+# define ERRONLY "ERROR\nonly 1 or space in the first and last line"
+# define FIRSTONE "ERROR\nNot beginning by 1"
+# define ERRWALL "ERROR\n0 not surrounded by wall"
+# define FINALONE "ERROR\nNot finishing by 1"
 # define ERRORUNKNOWN "ERROR\nunknown character detected"
 # define ERRPLAYER "ERROR\nnumber of player != 1"
 # define ERRSMALL "ERROR\nMap are too (biggy)small"
@@ -116,6 +116,15 @@ typedef struct s_ray
 	int		y;
 }			t_ray;
 
+typedef struct s_utils
+{
+	int		i;
+	int		j;
+	char	*value;
+	int		k;
+	int		l;
+}			t_utils;
+
 typedef struct s_cub3d
 {
 	char	**maps;
@@ -137,6 +146,7 @@ typedef struct s_cub3d
 	t_map	*map;
 	t_img	*img;
 	t_ray	*ray;
+	t_utils	*utils;
 
 }			t_cub3d;
 
@@ -150,9 +160,8 @@ int			check_cardinal_caracters(char *line_map);
 int			check_textures_caracters(char *line_map);
 int			line_is_fullspace(char *line_map);
 void		fill_space_one(char **map);
-int			checkformat(t_cub3d *cub3d, char *path);
+int			checkformat(t_cub3d *cub3d, char *path, t_utils *utils);
 void		free_superstrs(char ***strs);
-void		free_strs(char **strs);
 void		map_reader(t_cub3d *cub3d, char *path);
 int			is_news(char c);
 int			is_character(char c);
@@ -160,7 +169,8 @@ int			valid_character(char c);
 void		print_data(t_cub3d *cub3d, bool restr_aff);
 void		get_chararacter_pos(char **map, t_cub3d *cub3d);
 void		remove_comma(char *element);
-int			check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d);
+int			check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d,
+				t_utils *utils);
 int			check_nbr_value(char *floor_or_celling);
 int			check_dir_textures(char **dir_path, t_cub3d *cub3d,
 				char **tmp_texture);
@@ -198,5 +208,7 @@ void		init_cub3d_struct(t_cub3d **cub3d);
 void		init_map_struct(t_map **map);
 void		init_ray_struct(t_ray **ray);
 int			can_move(t_cub3d *cub3d, t_ray *ray, double x, double y);
+int			line_is_spcnews(char *line_map);
+int			line_is_fullspace(char *line_map);
 
 #endif

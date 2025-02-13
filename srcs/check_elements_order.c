@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements_order.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/12 16:22:48 by ankammer         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:20:45 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,6 @@ int	check_textures_caracters(char *line_map)
 	if (line_map[i] == 'F')
 		return (1);
 	else if (line_map[i] == 'C')
-		return (1);
-	return (0);
-}
-
-int	line_is_fullspace(char *line_map)
-{
-	size_t	i;
-
-	i = 0;
-	while (ft_isspace(line_map[i]))
-		i++;
-	if (i == ft_strlen(line_map))
-		return (1);
-	return (0);
-}
-
-int	line_is_spcnews(char *line_map)
-{
-	size_t	i;
-
-	i = 0;
-	while (ft_isspace(line_map[i]) || is_news(line_map[i]))
-		i++;
-	if (i == ft_strlen(line_map))
 		return (1);
 	return (0);
 }
@@ -117,9 +93,9 @@ int	check_elements_order(t_cub3d *cub3d)
 	j = 0;
 	cub3d->coltex = count_coltex(cub3d->maps);
 	if (map_is_absent(cub3d->maps, cub3d->coltex, &j) == 1)
-		return (ft_printf_fd(2, "%s\n%s\n", ERRCOLTEX, ERRNOMAP), 1);
+		return (ft_printf_fd(2, "%s\n%s", ERRCOLTEX, ERRNOMAP), 1);
 	else if (map_is_absent(cub3d->maps, cub3d->coltex, &j) == 2)
-		return (ft_printf_fd(2, "%s\n", ERRNOMAP), 1);
+		return (ft_printf_fd(2, "%s", ERRNOMAP), 1);
 	while (cub3d->maps[j] && cub3d->coltex == 6)
 	{
 		if (line_is_spcnews(cub3d->maps[j]) && (cub3d->maps[j + 1]
