@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:34:31 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/11 13:48:55 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:08:24 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	separate_map_texture(int *j, int *i, char **map)
 	while (map[*j])
 		(*j)++;
 	while (check_cardinal_caracters(map[*i])
-		|| check_textures_caracters(map[*i]) || line_is_fullspace(map[*i]))
+		|| check_textures_caracters(map[*i]) || lineisspace(map[*i]))
 		(*i)++;
 }
 

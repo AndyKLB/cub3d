@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:10:43 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/13 14:40:31 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:02:50 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_utils_struct(t_cub3d *cub3d, t_utils *utils)
 	utils->j = 0;
 	utils->value = NULL;
 	utils->k = 0;
-	utils->l = 0;
+	utils->line = NULL;
 }
 
 int	checkformat(t_cub3d *cub3d, char *path, t_utils *utils)

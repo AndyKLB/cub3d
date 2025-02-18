@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:33:42 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/13 14:25:51 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:08:19 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	data_init(t_cub3d *cub3d, t_img *img, t_map *map, t_ray *ray)
 	return (0);
 }
 
-int	line_is_fullspace(char *line_map)
+int	lineisspace(char *line_map)
 {
 	size_t	i;
 

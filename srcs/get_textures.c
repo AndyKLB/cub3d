@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:00:23 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/13 14:35:27 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/13 15:10:13 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	check_texture_init(t_cub3d *cub3d, char **tmp_texture)
 	if (!cub3d->floor || check_nbr_value(cub3d->floor)
 		|| check_value(cub3d->floor, 1, cub3d, cub3d->utils))
 		return (1);
+	init_utils_struct(cub3d, cub3d->utils);
 	if (!cub3d->celling || check_nbr_value(cub3d->celling)
 		|| check_value(cub3d->celling, 0, cub3d, cub3d->utils))
 		return (1);

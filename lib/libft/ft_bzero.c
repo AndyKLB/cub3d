@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:54:45 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 13:12:18 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:23:53 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		*(unsigned char *)(s + i) = 0; 
+		*(unsigned char *)(s + i) = 0;
 		i++;
 	}
 }

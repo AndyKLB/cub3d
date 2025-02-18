@@ -6,7 +6,7 @@
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:19:37 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/13 14:43:38 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:19:56 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,33 @@ int	check_nbr_value(char *floor_or_celling)
 		if (!ft_isdigit(floor_or_celling[i]) && !ft_isspace(floor_or_celling[i])
 			&& floor_or_celling[i] != '-')
 			is_not_digit++;
-		if (floor_or_celling[i] == ' ' && floor_or_celling[i + 1])
+		if (floor_or_celling[i] == ' ' && floor_or_celling[i + 1]
+			&& floor_or_celling[i + 1] != ' ')
 			nb_spc++;
 		i++;
 	}
 	if (nb_spc != 2 || is_not_digit)
 		return (1);
+	return (0);
+}
+
+int	check_invalid_input(char *value, t_cub3d *cub3d)
+{
+	int	i;
+
+	i = 0;
+	while (value[i])
+	{
+		if ((!ft_isdigit(value[i]) && value[i]) || (value[i] == '-' && i == 0))
+		{
+			if (ft_atoi(value) > 255 || ft_atoi(value) < 0)
+			{
+				return (cub3d->outrange = 1, 1);
+			}
+			return (1);
+		}
+		i++;
+	}
 	return (0);
 }
 
@@ -45,12 +66,8 @@ int	check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d, t_utils *u)
 		while (!ft_isspace(floor_or_ceilling[u->j]) && floor_or_ceilling[u->j])
 			u->j++;
 		u->value = ft_substr(floor_or_ceilling, u->i, (u->j - u->i));
-		while (u->value[++(u->l)])
-		{
-			if (!ft_isdigit(u->value[u->l]))
-				return (free(u->value), 1);
-		}
-		u->l = 0;
+		if (check_invalid_input(u->value, cub3d))
+			return (free(u->value), 1);
 		u->i = u->j;
 		if (ft_atoi(u->value) > 255 || ft_atoi(u->value) < 0)
 			return (cub3d->outrange = 1, free(u->value), 1);
@@ -62,21 +79,6 @@ int	check_value(char *floor_or_ceilling, int floor, t_cub3d *cub3d, t_utils *u)
 		u->k++;
 	}
 	return (0);
-}
-
-void	remove_comma(char *element)
-{
-	int	i;
-
-	i = 0;
-	if (!element)
-		return ;
-	while (element[i])
-	{
-		if (element[i] == ',')
-			element[i] = ' ';
-		i++;
-	}
 }
 
 void	set_position(int x, int y, char direction, t_cub3d *cub3d)

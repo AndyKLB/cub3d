@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:43 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/13 14:44:03 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:08:14 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 # define ERRPLAYER "ERROR\nnumber of player != 1"
 # define ERRSMALL "ERROR\nMap are too (biggy)small"
 # define ERRRANGE "ERROR\ninvalid RGB range"
+# define ERR_MAP "ERROR\nInvalid Map"
 # define WIN_W 1280
 # define RGB_SIZE 3
 # define WIN_H 720
@@ -122,7 +123,7 @@ typedef struct s_utils
 	int		j;
 	char	*value;
 	int		k;
-	int		l;
+	char	*line;
 }			t_utils;
 
 typedef struct s_cub3d
@@ -158,7 +159,7 @@ int			ft_isspace(char c);
 void		msg_error(char *msg, t_cub3d *cub3d);
 int			check_cardinal_caracters(char *line_map);
 int			check_textures_caracters(char *line_map);
-int			line_is_fullspace(char *line_map);
+int			lineisspace(char *line_map);
 void		fill_space_one(char **map);
 int			checkformat(t_cub3d *cub3d, char *path, t_utils *utils);
 void		free_superstrs(char ***strs);
@@ -209,6 +210,6 @@ void		init_map_struct(t_map **map);
 void		init_ray_struct(t_ray **ray);
 int			can_move(t_cub3d *cub3d, t_ray *ray, double x, double y);
 int			line_is_spcnews(char *line_map);
-int			line_is_fullspace(char *line_map);
+void		init_utils_struct(t_cub3d *cub3d, t_utils *utils);
 
 #endif

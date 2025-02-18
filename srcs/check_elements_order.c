@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements_order.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:28:22 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/02/13 14:20:45 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:08:17 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	count_coltex(char **map)
 	{
 		if ((check_cardinal_caracters(map[j])
 				|| check_textures_caracters(map[j])
-				|| line_is_fullspace(map[j])) && map[j])
+				|| lineisspace(map[j])) && map[j])
 			coltex++;
 		j++;
 	}
@@ -68,9 +68,9 @@ int	map_is_absent(char **map, int coltex, int *j)
 	k = 0;
 	i = 0;
 	while ((check_cardinal_caracters(map[i]) || check_textures_caracters(map[i])
-			|| line_is_fullspace(map[i])) && map[i])
+			|| lineisspace(map[i])) && map[i])
 	{
-		if (!line_is_fullspace(map[i]) && map[i])
+		if (!lineisspace(map[i]) && map[i])
 			k++;
 		i++;
 		(*j) = k;

@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ankammer <ankammer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:58:33 by ankammer          #+#    #+#             */
-/*   Updated: 2025/02/12 13:37:16 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:11:09 by ankammer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+void	remove_comma(char *element)
+{
+	int	i;
+
+	i = 0;
+	if (!element)
+		return ;
+	while (element[i])
+	{
+		if (element[i] == ',')
+			element[i] = ' ';
+		i++;
+	}
+}
+
+int	ftfuldgt(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (ft_isdigit(str[i]))
+		return (1);
+	return (0);
+}
 
 void	init_map_textures(t_cub3d *cub3d, char *buff)
 {
@@ -41,12 +68,42 @@ void	init_map_textures(t_cub3d *cub3d, char *buff)
 	free_superstrs(&tmp_texture);
 }
 
+char	*line_reader(char **buff, int fd, t_cub3d *cub3d, int flag)
+{
+	while (1)
+	{
+		cub3d->utils->line = get_next_line(fd);
+		if (!cub3d->utils->line)
+			break ;
+		if (ftfuldgt(cub3d->utils->line) && flag == 0)
+			flag = 1;
+		else if (flag == 2 && (cub3d->utils->line[0] != '\n'
+				|| lineisspace(cub3d->utils->line)))
+		{
+			if (!ftfuldgt(cub3d->utils->line))
+				flag = 3;
+			if (ftfuldgt(cub3d->utils->line) || lineisspace(cub3d->utils->line))
+				flag = 4;
+		}
+		else if (flag == 1 && cub3d->utils->line[0] == '\n')
+			flag = 2;
+		*buff = ft_strjoinfree(*buff, cub3d->utils->line);
+		free(cub3d->utils->line);
+	}
+	if (flag == 3)
+		(free(*buff), msg_error(ERRORDR, cub3d));
+	if (flag == 4)
+		(free(*buff), msg_error(ERR_MAP, cub3d));
+	return (*buff);
+}
+
 void	map_reader(t_cub3d *cub3d, char *path)
 {
 	int		fd;
 	char	*buff;
-	char	*line;
+	int		flag;
 
+	flag = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return ;
@@ -56,16 +113,9 @@ void	map_reader(t_cub3d *cub3d, char *path)
 		close(fd);
 		return ;
 	}
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		buff = ft_strjoinfree(buff, line);
-		free(line);
-	}
+	line_reader(&buff, fd, cub3d, flag);
 	if (!*buff)
-		return (free(buff), (void)0);
-	init_map_textures(cub3d, buff);
+		return (free(buff), close(fd), (void)0);
 	close(fd);
+	init_map_textures(cub3d, buff);
 }
